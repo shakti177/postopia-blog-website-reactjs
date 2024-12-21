@@ -26,13 +26,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between px-[120px] py-4 bg-white shadow-md dark:bg-neutral-900">
-        <div className="flex items-center justify-center w-40">
+      <nav className="flex items-center justify-between p-3 md:px-[60px] lg:px-[120px] lg:py-5 bg-white shadow-md dark:bg-neutral-900">
+        <div className="flex items-center justify-center w-32 md:w-40">
           <Link to="/">
             <img src={theme === "light" ? logoDark : logoLight} alt="Logo" />
           </Link>
         </div>
-        <div>
+        <div className="hidden lg:block">
           <SearchBar />
         </div>
         <div className="flex items-center space-x-4">
@@ -46,7 +46,7 @@ const Navbar = () => {
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Avatar>
+              <Avatar className="h-7 w-7 md:h-9 md:w-9">
                 <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
