@@ -3,7 +3,6 @@ import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,12 +32,12 @@ const Navbar = () => {
           </Link>
         </div>
         {/* For desktop */}
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex flex-1 justify-center">
           <SearchBar />
         </div>
 
         <div className="flex items-center space-x-6">
-          {/* For Mobilw */}
+          {/* For Mobile */}
           <div className="lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
