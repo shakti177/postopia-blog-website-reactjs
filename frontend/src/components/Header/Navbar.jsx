@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between p-3 md:px-[60px] lg:px-[120px] lg:py-5 bg-white shadow-md dark:bg-neutral-900">
+      <nav className="flex items-center justify-between p-5 md:px-[60px] lg:px-[120px] lg:py-5 bg-white shadow-md dark:bg-neutral-900">
         <div className="flex items-center justify-center w-32 md:w-40">
           <Link to="/">
             <img src={theme === "light" ? logoDark : logoLight} alt="Logo" />
@@ -37,7 +37,7 @@ const Navbar = () => {
           <SearchBar />
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           {/* For Mobilw */}
           <div className="lg:hidden">
             <DropdownMenu>
@@ -50,14 +50,9 @@ const Navbar = () => {
             </DropdownMenu>
           </div>
 
-          <Button
-            variant="outline"
-            size="icon"
-            className="text-black"
-            onClick={toggleTheme}
-          >
+          <div onClick={toggleTheme}>
             {theme === "dark" ? <Sun className="dark:text-white" /> : <Moon />}
-          </Button>
+          </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

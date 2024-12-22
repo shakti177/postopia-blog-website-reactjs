@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { X, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -30,7 +29,7 @@ const SearchBar = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           onKeyPress={handleKeyPress}
-          className="w-full pr-20 rounded-lg bg-gray-100 focus:bg-white"
+          className="w-full pr-20 rounded-lg bg-gray-100 focus:bg-white focus-visible:ring-0"
           placeholder="Search..."
         />
 
