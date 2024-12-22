@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useTheme } from "../Theme/ThemeProvider";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Search } from "lucide-react";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -32,10 +32,24 @@ const Navbar = () => {
             <img src={theme === "light" ? logoDark : logoLight} alt="Logo" />
           </Link>
         </div>
+        {/* For desktop */}
         <div className="hidden lg:block">
           <SearchBar />
         </div>
+
         <div className="flex items-center space-x-4">
+          {/* For Mobilw */}
+          <div className="lg:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Search />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <SearchBar />
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
           <Button
             variant="outline"
             size="icon"
@@ -44,6 +58,7 @@ const Navbar = () => {
           >
             {theme === "dark" ? <Sun className="dark:text-white" /> : <Moon />}
           </Button>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="h-7 w-7 md:h-9 md:w-9">
