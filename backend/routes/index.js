@@ -29,17 +29,17 @@ router.get("/posts/:id", async (req, res) => {
   }
 });
 
-router.get("/users/:id", async (req, res) => {
-  try {
-    const userById = await User.findById(req.params.id).select("-password");
-    if (userById) {
-      res.json(userById);
-    } else {
-      res.status(404).json({ error: "User not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching User" });
-  }
-});
+// router.get("/users/:id", async (req, res) => {
+//   try {
+//     const userById = await User.findById(req.params.id).select("-password");
+//     if (userById) {
+//       res.json(userById);
+//     } else {
+//       res.status(404).json({ error: "User not found" });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error: "Error fetching User" });
+//   }
+// });
 
 module.exports = router;
