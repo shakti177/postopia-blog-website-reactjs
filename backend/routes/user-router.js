@@ -20,4 +20,6 @@ router.post("/logout", isLoggedIn, logoutUser);
 
 router.patch("/update", isLoggedIn, updateUser);
 
+router.patch("/profile", isLoggedIn, profileUser);
+
 module.exports = router;
