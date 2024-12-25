@@ -152,6 +152,49 @@ module.exports.updateUser = async (req, res) => {
   }
 };
 
-module.exports.testUser = async (req, res) => {
-  res.send("Hello from the Test user controller!");
+module.exports.getUser = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "User not found!",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: { name: user.name, email: user.email },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error!",
+    });
+  }
+};
+
+module.exports.deleteUser = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "User not found!",
+      });
+    }
+    await user.remove();
+    res.status(200).json({
+      status: "success",
+      message: "User deleted successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error!",
+    });
+  }
 };
