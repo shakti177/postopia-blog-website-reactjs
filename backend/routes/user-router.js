@@ -18,6 +18,6 @@ router.post("/login", loginUser);
 
 router.post("/logout", isLoggedIn, logoutUser);
 
-router.patch("/update", isLoggedIn, updateUser);
+router.patch("/update/:id", isLoggedIn, updateUser);
 
 module.exports = router;
