@@ -8,7 +8,7 @@ const _layout = () => {
   };
 
   return (
-    <Stack screenOptions={screenOptions} initialRouteName='Login'>
+    <Stack screenOptions={screenOptions} initialRouteName='Login.tsx'>
       <Stack.Screen name='index' />
       <Stack.Screen name='Login' />
     </Stack>
