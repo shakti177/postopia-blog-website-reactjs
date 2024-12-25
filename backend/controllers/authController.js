@@ -151,3 +151,7 @@ module.exports.updateUser = async (req, res) => {
     });
   }
 };
+
+module.exports.testUser = async (req, res) => {
+  res.send("Hello from the Test user controller!");
+};
