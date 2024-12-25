@@ -24,6 +24,6 @@ router.patch("/update", isLoggedIn, updateUser);
 
 router.get("/profile", isLoggedIn, getUser);
 
-router.post("/delete", isLoggedIn, deleteUser);
+router.delete("/delete", isLoggedIn, deleteUser);
 
 module.exports = router;
