@@ -152,7 +152,7 @@ module.exports.updateUser = async (req, res) => {
   }
 };
 
-module.exports.profileUser = async (req, res) => {
+module.exports.getUser = async (req, res) => {
   try {
     const user = await userModel.findById(req.user._id);
     if (!user) {
