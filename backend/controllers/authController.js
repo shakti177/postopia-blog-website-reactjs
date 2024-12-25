@@ -99,3 +99,55 @@ module.exports.logoutUser = async (req, res) => {
     });
   }
 };
+
+module.exports.updateUser = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "User not found!",
+      });
+    }
+
+    const { name, email, oldPassword, newPassword } = req.body;
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+
+    if (newPassword) {
+      if (!oldPassword) {
+        return res.status(400).json({
+          status: "error",
+          message: "Old password is required to update the password.",
+        });
+      }
+
+      const isMatch = await bcrypt.compare(oldPassword, user.password);
+      if (!isMatch) {
+        return res.status(400).json({
+          status: "error",
+          message: "Old password is incorrect.",
+        });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(newPassword, salt);
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      status: "success",
+      message: "User updated successfully!",
+      data: { name: user.name, email: user.email },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error!",
+    });
+  }
+};
