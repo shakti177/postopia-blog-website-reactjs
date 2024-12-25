@@ -185,7 +185,7 @@ module.exports.deleteUser = async (req, res) => {
         message: "User not found!",
       });
     }
-    await user.remove();
+    await user.deleteOne();
     res.status(200).json({
       status: "success",
       message: "User deleted successfully!",
