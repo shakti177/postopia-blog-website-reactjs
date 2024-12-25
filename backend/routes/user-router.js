@@ -5,7 +5,6 @@ const {
   loginUser,
   logoutUser,
   updateUser,
-  getUser,
 } = require("../controllers/authController");
 const { isLoggedIn } = require("../middlewares/isLoggedIn");
 
@@ -20,7 +19,5 @@ router.post("/login", loginUser);
 router.post("/logout", isLoggedIn, logoutUser);
 
 router.patch("/update", isLoggedIn, updateUser);
-
-router.get("/profile", isLoggedIn, getUser);
 
 module.exports = router;

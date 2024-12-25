@@ -151,25 +151,3 @@ module.exports.updateUser = async (req, res) => {
     });
   }
 };
-
-module.exports.getUser = async (req, res) => {
-  try {
-    const user = await userModel.findById(req.user._id);
-    if (!user) {
-      return res.status(404).json({
-        status: "error",
-        message: "User not found!",
-      });
-    }
-    res.status(200).json({
-      status: "success",
-      data: { name: user.name, email: user.email },
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      status: "error",
-      message: "Internal server error!",
-    });
-  }
-};
