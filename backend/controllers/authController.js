@@ -55,7 +55,7 @@ module.exports.loginUser = async (req, res) => {
     let user = await userModel.findOne({ email });
 
     if (!user)
-      return res.status(404).json({
+      return res.status(401).json({
         status: "error",
         message: "User does not exist!",
       });
