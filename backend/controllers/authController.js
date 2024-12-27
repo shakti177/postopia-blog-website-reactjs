@@ -1,6 +1,7 @@
 const userModel = require("../models/user-model");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../util/generateToken");
+const jwt = require("jsonwebtoken");
 
 module.exports.registerUser = async (req, res) => {
   try {
@@ -31,11 +32,15 @@ module.exports.registerUser = async (req, res) => {
           password: hash,
         });
 
-        let token = generateToken(newUser);
+        const { accessToken, refreshToken } = generateToken(newUser);
+        newUser.refreshTokens.push(refreshToken);
+        await newUser.save();
+
         return res.status(201).json({
           status: "success",
           message: "User registered successfully!",
-          token: `Bearer ${token}`,
+          accessToken: `Bearer ${accessToken}`,
+          refreshToken,
           data: { name: newUser.name, email: newUser.email },
         });
       });
@@ -69,11 +74,15 @@ module.exports.loginUser = async (req, res) => {
         });
 
       if (result) {
-        let token = generateToken(user);
+        const { accessToken, refreshToken } = generateToken(user);
+        user.refreshTokens.push(refreshToken);
+        user.save();
+
         res.status(200).json({
           status: "success",
           message: "User logged in successfully!",
-          token: `Bearer ${token}`,
+          accessToken: `Bearer ${accessToken}`,
+          refreshToken,
           data: { name: user.name, email: user.email },
         });
       }
@@ -88,11 +97,37 @@ module.exports.loginUser = async (req, res) => {
 
 module.exports.logoutUser = async (req, res) => {
   try {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      return res.status(400).json({
+        status: "error",
+        message: "No refresh token provided!",
+      });
+    }
+
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_JWT_KEY);
+
+    const user = await userModel.findById(decoded.id);
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "User not found!",
+      });
+    }
+
+    user.refreshTokens = user.refreshTokens.filter(
+      (token) => token !== refreshToken
+    );
+    await user.save();
+
     res.status(200).json({
       status: "success",
       message: "User logged out successfully!",
     });
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       status: "error",
       message: "Internal server error!",
@@ -196,5 +231,44 @@ module.exports.deleteUser = async (req, res) => {
       status: "error",
       message: "Internal server error!",
     });
+  }
+};
+
+module.exports.refreshToken = async (req, res) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "No token provided!" });
+  }
+
+  try {
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_JWT_KEY);
+
+    const user = await userModel.findById(decoded.id);
+    if (!user || !user.refreshTokens.includes(refreshToken)) {
+      return res
+        .status(403)
+        .json({ status: "error", message: "Invalid token!" });
+    }
+
+    const { accessToken, refreshToken: newRefreshToken } = generateToken(user);
+
+    user.refreshTokens = user.refreshTokens.filter(
+      (token) => token !== refreshToken
+    );
+    user.refreshTokens.push(newRefreshToken);
+    await user.save();
+
+    res.status(200).json({
+      status: "success",
+      accessToken: `Bearer ${accessToken}`,
+      refreshToken: newRefreshToken,
+    });
+  } catch (error) {
+    res
+      .status(403)
+      .json({ status: "error", message: "Invalid or expired token!" });
   }
 };

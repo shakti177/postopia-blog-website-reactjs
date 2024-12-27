@@ -1,7 +1,12 @@
+import HeroSlider from "@/components/Hero/HeroSlider";
 import React from "react";
 
 const Home = () => {
-  return <div className="text-lg text-black dark:text-white">Hello World!</div>;
+  return (
+    <>
+      <HeroSlider />
+    </>
+  );
 };
 
 export default Home;

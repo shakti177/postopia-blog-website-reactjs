@@ -7,6 +7,7 @@ const {
   updateUser,
   getUser,
   deleteUser,
+  refreshToken,
 } = require("../controllers/authController");
 const { isLoggedIn } = require("../middlewares/isLoggedIn");
 
@@ -18,12 +19,14 @@ router.post("/register", registerUser);
 
 router.post("/login", loginUser);
 
-router.post("/logout", isLoggedIn, logoutUser);
+router.post("/logout", logoutUser);
 
 router.patch("/update", isLoggedIn, updateUser);
 
 router.get("/profile", isLoggedIn, getUser);
 
 router.delete("/delete", isLoggedIn, deleteUser);
+
+router.post("/refresh-token", refreshToken);
 
 module.exports = router;

@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema(
         ref: "Post",
       },
     ],
+    refreshTokens: [String],
   },
   { timestamps: true }
 );
