@@ -4,11 +4,20 @@ const userModel = require("../models/user-model");
 module.exports.createPost = async (req, res) => {
   try {
     const user = await userModel.findById(req.user._id);
+
+    if (!title || !content || !category) {
+      return res.status(400).json({
+        status: "error",
+        message: "Please provide all the required fields!",
+      });
+    }
+
     const post = await postModel.create({
       title: req.body.title,
       content: req.body.content,
       category: req.body.category,
     });
+
     post.user = user._id;
     post.save();
     user.posts.push(post);
