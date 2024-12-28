@@ -49,6 +49,15 @@ module.exports.updatePost = async (req, res) => {
 
     if (post.user.toString() === req.user._id.toString()) {
       const { title, content, category } = req.body;
+
+      if (!title || title.trim() === "" || !content || content.trim() === "") {
+        return res.status(400).json({
+          status: "error",
+          message:
+            "Feilds are required and cannot be empty or contain only spaces.",
+        });
+      }
+
       if (title) post.title = title;
       if (content) post.content = content;
       if (category) post.category = category;
