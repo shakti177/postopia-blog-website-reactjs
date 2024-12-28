@@ -7,10 +7,11 @@ module.exports.registerUser = async (req, res) => {
   try {
     let { name, email, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || name.trim() === "" || !email || !password) {
       return res.status(400).json({
         status: "error",
-        message: "Please provide all the required fields!",
+        message:
+          "Feilds are required and cannot be empty or contain only spaces.",
       });
     }
 
@@ -171,6 +172,14 @@ module.exports.updateUser = async (req, res) => {
     }
 
     const { name, email, oldPassword, newPassword } = req.body;
+
+    if (!name || name.trim() === "" || !email || !password) {
+      return res.status(400).json({
+        status: "error",
+        message:
+          "Feilds are required and cannot be empty or contain only spaces.",
+      });
+    }
 
     if (name) user.name = name;
     if (email) user.email = email;
