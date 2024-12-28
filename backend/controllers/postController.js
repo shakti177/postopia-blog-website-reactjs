@@ -5,10 +5,11 @@ module.exports.createPost = async (req, res) => {
   try {
     const user = await userModel.findById(req.user._id);
 
-    if (!title || !content || !category) {
+    if (!title || title.trim() === "" || !content || content.trim() === "") {
       return res.status(400).json({
         status: "error",
-        message: "Please provide all the required fields!",
+        message:
+          "Feilds are required and cannot be empty or contain only spaces.",
       });
     }
 
