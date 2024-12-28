@@ -59,7 +59,7 @@ module.exports.registerUser = async (req, res) => {
         return res.status(201).json({
           status: "success",
           message: "User registered successfully!",
-          accessToken: `Bearer ${accessToken}`,
+          accessToken: `${accessToken}`,
           data: { name: newUser.name, email: newUser.email },
         });
       });
@@ -107,7 +107,7 @@ module.exports.loginUser = async (req, res) => {
         res.status(200).json({
           status: "success",
           message: "User logged in successfully!",
-          accessToken: `Bearer ${accessToken}`,
+          accessToken: `${accessToken}`,
           data: { name: user.name, email: user.email },
         });
       }
