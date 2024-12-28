@@ -4,6 +4,8 @@ const userModel = require("../models/user-model");
 module.exports.isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
+  // remove bearer from token
+
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({
       status: "error",
