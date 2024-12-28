@@ -20,12 +20,10 @@ module.exports.registerUser = async (req, res) => {
     }
 
     if (password.trim().length < 6) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Password must be at least 6 characters long (excluding spaces).",
-        });
+      return res.status(400).json({
+        error:
+          "Password must be at least 6 characters long (excluding spaces).",
+      });
     }
 
     let existingUser = await userModel.findOne({ email });
@@ -76,6 +74,13 @@ module.exports.registerUser = async (req, res) => {
 module.exports.loginUser = async (req, res) => {
   try {
     let { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        status: "error",
+        message: "Please provide all the required fields!",
+      });
+    }
 
     let user = await userModel.findOne({ email });
 
