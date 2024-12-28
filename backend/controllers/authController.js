@@ -305,3 +305,38 @@ module.exports.refreshToken = async (req, res) => {
       .json({ status: "error", message: "Invalid or expired token!" });
   }
 };
+
+module.exports.uploadProfilePicture = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    if (!req.file) {
+      return res.status(400).json({
+        status: "error",
+        message: "No file uploaded!",
+      });
+    }
+
+    const buffer = req.file.buffer;
+    const base64Image = buffer.toString("base64");
+    const profilePicture = `data:${req.file.mimetype};base64,${base64Image}`;
+
+    const user = await userModel.findByIdAndUpdate(
+      userId,
+      { profilePicture },
+      { new: true }
+    );
+
+    res.status(200).json({
+      status: "success",
+      message: "Profile picture uploaded successfully!",
+      data: { profilePicture: user.profilePicture },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Error uploading profile picture",
+    });
+  }
+};

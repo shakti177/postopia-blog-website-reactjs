@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
     refreshTokens: [String],
+    profilePicture: String,
   },
   { timestamps: true }
 );
