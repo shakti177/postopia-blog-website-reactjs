@@ -7,6 +7,27 @@ module.exports.registerUser = async (req, res) => {
   try {
     let { name, email, password } = req.body;
 
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        status: "error",
+        message: "Please provide all the required fields!",
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format." });
+    }
+
+    if (password.trim().length < 6) {
+      return res
+        .status(400)
+        .json({
+          error:
+            "Password must be at least 6 characters long (excluding spaces).",
+        });
+    }
+
     let existingUser = await userModel.findOne({ email });
 
     if (existingUser) {
