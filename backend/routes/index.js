@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.get("/posts", async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ createdAt: -1 });
     res.json(posts);
   } catch (error) {
     res.status(500).json({ error: "Error fetching products" });
