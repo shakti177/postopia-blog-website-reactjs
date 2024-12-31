@@ -3,6 +3,7 @@ const userModel = require("../models/user-model");
 
 module.exports.createPost = async (req, res) => {
   try {
+    const { title, content, category } = req.body;
     const user = await userModel.findById(req.user._id);
 
     if (!title || title.trim() === "" || !content || content.trim() === "") {
@@ -14,9 +15,9 @@ module.exports.createPost = async (req, res) => {
     }
 
     const post = await postModel.create({
-      title: req.body.title,
-      content: req.body.content,
-      category: req.body.category,
+      title,
+      content,
+      category,
     });
 
     post.user = user._id;
@@ -29,6 +30,8 @@ module.exports.createPost = async (req, res) => {
       data: post,
     });
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       status: "error",
       message: "Internal server error!",
