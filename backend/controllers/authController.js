@@ -1,4 +1,5 @@
 const userModel = require("../models/user-model");
+const postModel = require("../models/post-model");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../util/generateToken");
 const jwt = require("jsonwebtoken");
@@ -253,6 +254,9 @@ module.exports.deleteUser = async (req, res) => {
         message: "User not found!",
       });
     }
+
+    await postModel.deleteMany({ author: req.user._id });
+
     await user.deleteOne();
     res.status(200).json({
       status: "success",
