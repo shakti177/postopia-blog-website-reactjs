@@ -20,7 +20,7 @@ module.exports.createPost = async (req, res) => {
       category,
     });
 
-    post.user = user._id;
+    post.author = user._id;
     post.save();
     user.posts.push(post);
     user.save();
@@ -97,7 +97,7 @@ module.exports.deletePost = async (req, res) => {
       });
     }
 
-    if (post.user.toString() === req.user._id.toString()) {
+    if (post.author.toString() === req.user._id.toString()) {
       await postModel.deleteOne({ _id: req.params.id });
       res.status(200).json({
         status: "success",
@@ -110,6 +110,8 @@ module.exports.deletePost = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
+
     return res.status(500).json({
       status: "error",
       message: "Internal server error!",
