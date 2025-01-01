@@ -50,7 +50,7 @@ module.exports.updatePost = async (req, res) => {
       });
     }
 
-    if (post.user.toString() === req.user._id.toString()) {
+    if (post.author.toString() === req.user._id.toString()) {
       const { title, content, category } = req.body;
 
       if (!title || title.trim() === "" || !content || content.trim() === "") {
@@ -99,6 +99,17 @@ module.exports.deletePost = async (req, res) => {
 
     if (post.author.toString() === req.user._id.toString()) {
       await postModel.deleteOne({ _id: req.params.id });
+
+      await userModel.findByIdAndUpdate(
+        req.user._id,
+        {
+          $pull: {
+            posts: req.params.id,
+          },
+        },
+        { new: true }
+      );
+
       res.status(200).json({
         status: "success",
         message: "Post deleted successfully!",
