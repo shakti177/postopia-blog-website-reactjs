@@ -174,14 +174,6 @@ module.exports.updateUser = async (req, res) => {
 
     const { name, email, oldPassword, newPassword } = req.body;
 
-    if (!name || name.trim() === "" || !email || !password) {
-      return res.status(400).json({
-        status: "error",
-        message:
-          "Feilds are required and cannot be empty or contain only spaces.",
-      });
-    }
-
     if (name) user.name = name;
     if (email) user.email = email;
 
