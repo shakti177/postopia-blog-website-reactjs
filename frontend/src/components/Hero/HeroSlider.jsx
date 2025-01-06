@@ -78,7 +78,7 @@ const HeroSlider = () => {
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-3xl"
                   />
                 </div>
               </div>
