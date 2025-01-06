@@ -21,7 +21,7 @@ const HeroSlider = () => {
       title:
         "Create an Art that shows the beauty in everyone’s ideas of flaws.",
       image:
-        "https://wp.w3layouts.com/newsblog/wp-content/uploads/sites/22/2021/02/beauty.jpg",
+        "https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg",
     },
     {
       id: 3,
@@ -43,17 +43,17 @@ const HeroSlider = () => {
 
   return (
     <>
-      <div className="w-full md:h-[28rem] lg:h-[40rem] p-5 lg:px-20 bg-neutral-100 dark:bg-neutral-950">
+      <div className="p-5 md:px-[38px] lg:px-[120px]">
         <Swiper
           pagination={{
             clickable: true,
           }}
           loop={true}
           autoplay={{
-            delay: 2000,
+            delay: 2500,
           }}
+          spaceBetween={30}
           modules={[Autoplay, Pagination]}
-          className="w-full h-full"
           style={{
             "--swiper-pagination-color": "#1D40AF",
             "--swiper-pagination-bullet-inactive-color": "#999999",
@@ -64,21 +64,21 @@ const HeroSlider = () => {
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div className="flex flex-col md:flex-row justify-between items-center h-full md:px-[38px]">
-                <div>
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-5 md:space-y-0 pb-10 md:py-10">
+                <div className="md:w-[90%]">
                   <p className="inline-block px-3 py-1 font-medium rounded-[15px] text-blue-800 bg-blue-300">
                     {slide.category}
                   </p>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold lg:leading-[60px] mt-5 md:w-[90%] text-neutral-900 dark:text-neutral-100">
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold lg:leading-[60px] mt-5 md:w-[90%] text-neutral-900 dark:text-neutral-100">
                     {slide.title}
                   </h2>
                 </div>
 
-                <div className="mt-5 md:mt-0">
+                <div className="w-full md:w-[50%] h-[400px] lg:h-[500px] relative rounded-lg overflow-hidden">
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className="rounded-3xl"
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
               </div>

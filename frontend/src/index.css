@@ -32,6 +32,12 @@
   html {
     font-family: "Roboto", sans-serif;
   }
+
+  body {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
   .dark {
     --background: 192, 20%, 5%;
     --foreground: 0 0% 98%;
