@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { useTheme } from "../Theme/ThemeProvider";
+import { useTheme } from "../../context/ThemeProvider";
 import { Moon, Sun, Search } from "lucide-react";
 
 const Navbar = () => {

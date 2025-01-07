@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../Theme/ThemeProvider";
+import { useTheme } from "../../context/ThemeProvider";
 import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
 
