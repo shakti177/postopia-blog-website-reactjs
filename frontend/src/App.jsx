@@ -4,6 +4,7 @@ import Navbar from "./components/Header/Navbar";
 import Home from "./pages/Home";
 import Footerbar from "./components/Footer/Footerbar";
 import NotFound from "./pages/NotFound";
+import Demo from "./pages/Demo";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/demo" element={<Demo />} />
         </Routes>
         <Footerbar />
       </BrowserRouter>
