@@ -28,7 +28,7 @@ const TopPicks = () => {
   ];
 
   return (
-    <div className="container mx-auto px-5 md:px-10 py-8">
+    <div className="container mx-auto px-5 md:px-10 py-24">
       <h1 className="text-2xl md:text-3xl font-bold mb-6">
         Top Picks of This Month
       </h1>
