@@ -80,7 +80,7 @@ const Footerbar = () => {
         </div>
         <div className="py-4">
           <p className="text-sm text-gray-500 text-center dark:text-gray-400">
-            © {getCurrentYear()} Blognest. All Rights Reserved | Designed and
+            © {getCurrentYear()} Postopia. All Rights Reserved | Designed and
             developed by{" "}
             <a
               href="https://github.com/shakti177"
