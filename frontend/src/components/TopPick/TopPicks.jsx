@@ -72,7 +72,7 @@ const TopPicks = () => {
                   </Avatar>
                   <div>
                     <span className="text-lg font-medium text-white">
-                      John Doe
+                      Shakti Tamrakar
                     </span>
                     <p className="flex items-center justify-center gap-2 text-white text-sm lg:text-base">
                       February 22, 2025. <Clock9 size={14} strokeWidth={3} />{" "}
