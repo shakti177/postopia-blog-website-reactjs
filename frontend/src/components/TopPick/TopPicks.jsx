@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Clock9 } from "lucide-react";
+import { Skeleton } from "../ui/skeleton";
 
 const TopPicks = () => {
   const posts = [
@@ -27,44 +28,60 @@ const TopPicks = () => {
     },
   ];
 
+  const [loading, setloading] = useState(false);
+
   return (
     <div className="container mx-auto px-5 md:px-10 py-24">
       <h1 className="text-2xl md:text-3xl font-bold mb-6">
         Top Picks of This Month
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="relative h-[400px] md:h-[470px] bg-cover bg-center rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform duration-300"
-            style={{
-              backgroundImage: `url(${post.image})`,
-            }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                {post.title}
-              </h2>
-              <div className="flex items-center space-x-4">
-                <Avatar className="h-14 w-14 border-2 border-neutral-400">
-                  <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <div>
-                  <span className="text-lg font-medium text-white">
-                    John Doe
-                  </span>
-                  <p className="flex items-center justify-center gap-2 text-white text-sm lg:text-base">
-                    February 22, 2025. <Clock9 size={14} strokeWidth={3} /> 7:29
-                    am
-                  </p>
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, index) => (
+            <div key={index}>
+              <Skeleton className="h-[350px] md:h-[370px] rounded-2xl" />
+              <div className="space-y-2 mt-4">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              className="relative h-[400px] md:h-[470px] bg-cover bg-center rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform duration-300"
+              style={{
+                backgroundImage: `url(${post.image})`,
+              }}
+            >
+              <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                <h2 className="text-2xl font-bold text-white mb-4">
+                  {post.title}
+                </h2>
+                <div className="flex items-center space-x-4">
+                  <Avatar className="h-14 w-14 border-2 border-neutral-400">
+                    <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <span className="text-lg font-medium text-white">
+                      John Doe
+                    </span>
+                    <p className="flex items-center justify-center gap-2 text-white text-sm lg:text-base">
+                      February 22, 2025. <Clock9 size={14} strokeWidth={3} />{" "}
+                      7:29 am
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
