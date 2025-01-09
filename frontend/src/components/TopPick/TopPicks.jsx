@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Clock9 } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
+import { getNameInitials } from "../../utils/stringUtil";
 
 const TopPicks = () => {
   const posts = [
@@ -65,7 +66,9 @@ const TopPicks = () => {
                 <div className="flex items-center space-x-4">
                   <Avatar className="h-14 w-14 border-2 border-neutral-400">
                     <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>
+                      {getNameInitials("shakti Tamrakar")}
+                    </AvatarFallback>
                   </Avatar>
                   <div>
                     <span className="text-lg font-medium text-white">
