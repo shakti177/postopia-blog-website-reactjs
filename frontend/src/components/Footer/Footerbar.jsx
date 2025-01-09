@@ -11,9 +11,9 @@ const Footerbar = () => {
   return (
     <>
       <div className="pt-7 bg-white dark:bg-neutral-900">
-        <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-4 md:gap-8 lg:px-[120px]">
+        <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-4 md:gap-8 md:px-[60px] lg:px-[120px]">
           <div className="col-span-1">
-            <div className="flex items-center justify-center w-44">
+            <div className="flex items-center justify-center w-44 md:w-36 lg:w-52">
               <img src={theme === "light" ? logoDark : logoLight} alt="Logo" />
             </div>
             <p className="py-6">
