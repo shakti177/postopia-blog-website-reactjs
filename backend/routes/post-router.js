@@ -8,7 +8,10 @@ const {
   updatePost,
   deletePost,
   postThumbnail,
+  allPost,
 } = require("../controllers/postController");
+
+router.get("/", allPost);
 
 router.post("/create", isLoggedIn, createPost);
 

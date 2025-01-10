@@ -4,14 +4,15 @@ require("dotenv").config();
 
 const db = require("./config/mongo-connection");
 
-const indexRoutes = require("./routes/index");
 const usersRouter = require("./routes/user-router");
 const postsRouter = require("./routes/post-router");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", indexRoutes);
+app.get("/", (req, res) => {
+  res.send("Welcome to Blog Nest");
+});
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 
