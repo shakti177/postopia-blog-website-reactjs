@@ -9,6 +9,7 @@ const {
   deletePost,
   postThumbnail,
   allPost,
+  postByCategory,
 } = require("../controllers/postController");
 
 router.get("/", allPost);
@@ -18,6 +19,8 @@ router.post("/create", isLoggedIn, createPost);
 router.patch("/update/", isLoggedIn, updatePost);
 
 router.delete("/delete", isLoggedIn, deletePost);
+
+router.get("/category", postByCategory);
 
 router.post(
   "/postThumbnail",

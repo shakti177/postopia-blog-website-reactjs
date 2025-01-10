@@ -201,3 +201,25 @@ module.exports.postThumbnail = async (req, res) => {
     });
   }
 };
+
+module.exports.postByCategory = async (req, res) => {
+  const { category } = req.query;
+
+  try {
+    if (!category) {
+      return res.status(400).json({
+        status: "error",
+        message: "category query parameter is required!",
+      });
+    }
+
+    const posts = await postModel.find({ category }).sort({ createdAt: -1 });
+
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error!",
+    });
+  }
+};
