@@ -88,7 +88,7 @@ module.exports.updatePost = async (req, res) => {
 
 module.exports.deletePost = async (req, res) => {
   try {
-    const { postId } = req.query; // Extract postId from query parameters
+    const { postId } = req.query;
 
     if (!postId) {
       return res.status(400).json({
@@ -107,10 +107,8 @@ module.exports.deletePost = async (req, res) => {
     }
 
     if (post.author.toString() === req.user._id.toString()) {
-      // Delete the post
       await postModel.deleteOne({ _id: postId });
 
-      // Remove the post reference from the user's posts array
       await userModel.findByIdAndUpdate(
         req.user._id,
         {
