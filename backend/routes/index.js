@@ -22,10 +22,10 @@ router.get("/posts/:id", async (req, res) => {
     if (postsById) {
       res.json(postsById);
     } else {
-      res.status(404).json({ error: "Product not found" });
+      res.status(404).json({ error: "Post not found" });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error fetching product" });
+    res.status(500).json({ error: "Error fetching post" });
   }
 });
 
