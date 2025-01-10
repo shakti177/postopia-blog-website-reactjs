@@ -88,7 +88,16 @@ module.exports.updatePost = async (req, res) => {
 
 module.exports.deletePost = async (req, res) => {
   try {
-    const post = await postModel.findById(req.params.id);
+    const { postId } = req.query; // Extract postId from query parameters
+
+    if (!postId) {
+      return res.status(400).json({
+        status: "error",
+        message: "postId query parameter is required!",
+      });
+    }
+
+    const post = await postModel.findById(postId);
 
     if (!post) {
       return res.status(404).json({
@@ -98,24 +107,26 @@ module.exports.deletePost = async (req, res) => {
     }
 
     if (post.author.toString() === req.user._id.toString()) {
-      await postModel.deleteOne({ _id: req.params.id });
+      // Delete the post
+      await postModel.deleteOne({ _id: postId });
 
+      // Remove the post reference from the user's posts array
       await userModel.findByIdAndUpdate(
         req.user._id,
         {
           $pull: {
-            posts: req.params.id,
+            posts: postId,
           },
         },
         { new: true }
       );
 
-      res.status(200).json({
+      return res.status(200).json({
         status: "success",
         message: "Post deleted successfully!",
       });
     } else {
-      res.status(401).json({
+      return res.status(401).json({
         status: "error",
         message: "You are not authorized to delete this post!",
       });

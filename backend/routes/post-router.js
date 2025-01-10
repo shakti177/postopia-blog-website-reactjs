@@ -14,7 +14,7 @@ router.post("/create", isLoggedIn, createPost);
 
 router.patch("/update/:id", isLoggedIn, updatePost);
 
-router.delete("/delete/:id", isLoggedIn, deletePost);
+router.delete("/delete", isLoggedIn, deletePost);
 
 router.post(
   "/postThumbnail/:id",
