@@ -12,7 +12,7 @@ const {
 
 router.post("/create", isLoggedIn, createPost);
 
-router.patch("/update/:id", isLoggedIn, updatePost);
+router.patch("/update/", isLoggedIn, updatePost);
 
 router.delete("/delete", isLoggedIn, deletePost);
 
