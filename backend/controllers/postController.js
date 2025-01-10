@@ -148,7 +148,16 @@ module.exports.postThumbnail = async (req, res) => {
 
     const base64Image = req.file.buffer.toString("base64");
 
-    const post = await postModel.findById(req.params.id);
+    const { postId } = req.query;
+
+    if (!postId) {
+      return res.status(400).json({
+        status: "error",
+        message: "postId query parameter is required!",
+      });
+    }
+
+    const post = await postModel.findById(postId);
 
     if (!post) {
       return res.status(404).json({

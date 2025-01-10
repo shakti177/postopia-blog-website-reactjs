@@ -17,7 +17,7 @@ router.patch("/update/", isLoggedIn, updatePost);
 router.delete("/delete", isLoggedIn, deletePost);
 
 router.post(
-  "/postThumbnail/:id",
+  "/postThumbnail",
   isLoggedIn,
   upload.single("thumbnail"),
   postThumbnail
