@@ -8,24 +8,22 @@ router.get("/", (req, res) => {
 });
 
 router.get("/posts", async (req, res) => {
-  try {
-    const posts = await Post.find().sort({ createdAt: -1 });
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ error: "Error fetching products" });
-  }
-});
+  const { postId } = req.query;
 
-router.get("/posts/:id", async (req, res) => {
   try {
-    const postsById = await Post.findById(req.params.id);
-    if (postsById) {
-      res.json(postsById);
+    if (postId) {
+      const post = await Post.findById(postId);
+      if (post) {
+        return res.json(post);
+      } else {
+        return res.status(404).json({ error: "Post not found" });
+      }
     } else {
-      res.status(404).json({ error: "Post not found" });
+      const posts = await Post.find().sort({ createdAt: -1 });
+      res.json(posts);
     }
   } catch (error) {
-    res.status(500).json({ error: "Error fetching post" });
+    res.status(500).json({ error: "Error fetching posts" });
   }
 });
 
