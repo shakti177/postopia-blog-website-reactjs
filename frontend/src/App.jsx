@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import Footerbar from "./components/Footer/Footerbar";
 import NotFound from "./pages/NotFound";
 import Demo from "./pages/Demo";
+import ScrollToTop from "./components/TopButton/ScrollToTop";
 
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <BrowserRouter>
         <Navbar />
         <Routes>
