@@ -79,7 +79,7 @@ const Articles = () => {
               {postData.map((posts) => (
                 <div
                   key={posts.id}
-                  className="flex flex-col space-y-4 rounded-3xl dark:bg-neutral-900 overflow-hidden"
+                  className="flex flex-col space-y-4 rounded-3xl bg-white dark:bg-neutral-900 overflow-hidden hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg"
                 >
                   <div className="h-72 w-full overflow-hidden">
                     <img
