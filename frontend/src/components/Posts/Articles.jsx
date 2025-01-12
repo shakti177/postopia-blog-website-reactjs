@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../SideBar/Sidebar";
+import { Skeleton } from "../ui/skeleton";
 
 const Articles = () => {
   const postData = [
@@ -68,6 +69,8 @@ const Articles = () => {
     },
   ];
 
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
       <div className="bg-gray-100 dark:bg-black">
@@ -76,26 +79,36 @@ const Articles = () => {
           <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10">
             {/* Post Content */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {postData.map((posts) => (
-                <div
-                  key={posts.id}
-                  className="flex flex-col space-y-4 rounded-3xl bg-white dark:bg-neutral-900 overflow-hidden hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg"
-                >
-                  <div className="h-72 w-full overflow-hidden">
-                    <img
-                      src={posts.image}
-                      alt={posts.title}
-                      className="w-full h-full object-cover"
-                    />
+              {postData.map((posts) =>
+                loading ? (
+                  <div key={posts.id}>
+                    <Skeleton className="h-[300px] md:w-[350px] rounded-2xl" />
+                    <div className="space-y-2 mt-4">
+                      <Skeleton className="h-4 w-[250px]" />
+                      <Skeleton className="h-4 w-[200px]" />
+                    </div>
                   </div>
-                  <div className="space-y-4 p-4">
-                    <p className="text-base text-blue-800 bg-blue-200 inline-block px-4 py-1 rounded-full">
-                      {posts.category}
-                    </p>
-                    <h2 className="text-lg font-semibold">{posts.title}</h2>
+                ) : (
+                  <div
+                    key={posts.id}
+                    className="flex flex-col space-y-4 rounded-3xl bg-white dark:bg-neutral-900 overflow-hidden hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg"
+                  >
+                    <div className="h-72 w-full overflow-hidden">
+                      <img
+                        src={posts.image}
+                        alt={posts.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="space-y-4 p-4">
+                      <p className="text-base text-blue-800 bg-blue-200 inline-block px-4 py-1 rounded-full">
+                        {posts.category}
+                      </p>
+                      <h2 className="text-lg font-semibold">{posts.title}</h2>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
 
             {/* Side Bar */}
