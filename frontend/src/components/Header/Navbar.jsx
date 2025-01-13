@@ -15,6 +15,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useTheme } from "../../context/ThemeProvider";
 import { Moon, Sun, Search } from "lucide-react";
+import { getNameInitials } from "../../utils/stringUtil";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -57,7 +58,9 @@ const Navbar = () => {
             <DropdownMenuTrigger asChild>
               <Avatar className="h-7 w-7 md:h-9 md:w-9">
                 <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>
+                  {getNameInitials("Shakti Tamrakar")}
+                </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">

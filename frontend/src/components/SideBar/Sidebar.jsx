@@ -26,18 +26,6 @@ const Sidebar = () => {
       id: 6,
       name: "Programming",
     },
-    {
-      id: 7,
-      name: "Health",
-    },
-    {
-      id: 8,
-      name: "Beauty",
-    },
-    {
-      id: 9,
-      name: "Fitness",
-    },
   ];
 
   return (
