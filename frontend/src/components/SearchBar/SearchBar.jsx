@@ -29,7 +29,7 @@ const SearchBar = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           onKeyPress={handleKeyPress}
-          className="w-full pr-20 rounded-lg bg-gray-100 focus:bg-white focus-visible:ring-0"
+          className="outline-none"
           placeholder="Search..."
         />
 

@@ -108,7 +108,9 @@ const Articles = () => {
                         <p className="font-semibold text-blue-800 bg-blue-200 inline-block px-4 py-1 rounded-full">
                           {posts.category}
                         </p>
-                        <h2 className="text-lg font-semibold">{posts.title}</h2>
+                        <h2 className="text-[22px] font-semibold">
+                          {posts.title}
+                        </h2>
                         <div className="flex items-center space-x-4">
                           <Avatar className="h-14 w-14 border-2 border-neutral-400">
                             <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
@@ -117,10 +119,10 @@ const Articles = () => {
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <span className="text-lg font-medium text-white">
+                            <span className="text-lg font-medium">
                               Shakti Tamrakar
                             </span>
-                            <p className="flex items-center justify-center gap-2 text-white text-sm lg:text-base">
+                            <p className="flex items-center justify-center gap-2 text-sm lg:text-base">
                               February 22, 2025.{" "}
                               <Clock9 size={14} strokeWidth={3} /> 7:29 am
                             </p>
