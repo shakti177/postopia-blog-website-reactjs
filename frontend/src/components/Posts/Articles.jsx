@@ -112,7 +112,7 @@ const Articles = () => {
             </div>
 
             {/* Side Bar */}
-            <div className="basis-[40%] sticky top-28 h-full overflow-auto">
+            <div className="basis-[40%] sticky top-28 h-full overflow-auto md:hidden lg:block">
               <Sidebar />
             </div>
           </div>
