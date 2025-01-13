@@ -26,7 +26,7 @@ const ScrollToTop = () => {
       {showBtn && (
         <button
           onClick={goToTop}
-          className="fixed bottom-5 right-5 p-3 bg-blue-800 dark:bg-neutral-900 text-white rounded-full shadow-lg focus:outline-none"
+          className="fixed bottom-5 right-5 p-3 bg-blue-800 dark:bg-neutral-900 text-white rounded-full shadow-lg z-10 focus:outline-none"
         >
           <ChevronUp />
         </button>
