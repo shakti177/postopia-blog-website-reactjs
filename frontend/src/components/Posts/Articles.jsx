@@ -70,6 +70,13 @@ const Articles = () => {
       image:
         "https://wp.w3layouts.com/newsblog/wp-content/uploads/sites/22/2021/01/beauty1.jpg",
     },
+    {
+      id: 10,
+      title: "3 New Outfit Formulas To Add To Your Capsule Wardrobe",
+      category: "Fashion",
+      image:
+        "https://wp.w3layouts.com/newsblog/wp-content/uploads/sites/22/2021/02/fashion4.jpg",
+    },
   ];
 
   const [loading, setLoading] = useState(false);

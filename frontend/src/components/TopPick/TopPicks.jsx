@@ -36,21 +36,17 @@ const TopPicks = () => {
       <h1 className="text-2xl md:text-3xl font-bold mb-6">
         Top Picks of This Month
       </h1>
-      {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(3)].map((_, index) => (
-            <div key={index}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) =>
+          loading ? (
+            <div>
               <Skeleton className="h-[350px] md:h-[370px] rounded-2xl" />
               <div className="space-y-2 mt-4">
                 <Skeleton className="h-4 w-[250px]" />
                 <Skeleton className="h-4 w-[200px]" />
               </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          ) : (
             <div
               key={post.id}
               className="relative h-[400px] md:h-[470px] bg-cover bg-center rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform duration-300"
@@ -82,9 +78,9 @@ const TopPicks = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      )}
+          )
+        )}
+      </div>
     </div>
   );
 };
