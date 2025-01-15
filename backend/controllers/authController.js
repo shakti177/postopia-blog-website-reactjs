@@ -109,6 +109,7 @@ module.exports.loginUser = async (req, res) => {
           status: "success",
           message: "User logged in successfully!",
           accessToken: `${accessToken}`,
+          refreshToken: `${refreshToken}`,
           data: { name: user.name, email: user.email },
         });
       }
