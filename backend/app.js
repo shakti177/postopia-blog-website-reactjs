@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
+const cors = require("cors");
 
 const db = require("./config/mongo-connection");
 
@@ -9,6 +10,7 @@ const postsRouter = require("./routes/post-router");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Welcome to Postopia");
