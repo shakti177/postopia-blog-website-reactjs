@@ -283,18 +283,32 @@ module.exports.refreshToken = async (req, res) => {
         .json({ status: "error", message: "Invalid token!" });
     }
 
-    const { accessToken, refreshToken: newRefreshToken } = generateToken(user);
+    const { accessToken } = generateToken(user);
 
-    user.refreshTokens = user.refreshTokens.filter(
-      (token) => token !== refreshToken
-    );
-    user.refreshTokens.push(newRefreshToken);
-    await user.save();
+    let currentRefreshToken = refreshToken;
+
+    try {
+      jwt.verify(refreshToken, process.env.REFRESH_JWT_KEY);
+    } catch (error) {
+      if (error.name === "TokenExpiredError") {
+        const { refreshToken: generatedRefreshToken } = generateToken(user);
+        user.refreshTokens = user.refreshTokens.filter(
+          (token) => token !== refreshToken
+        );
+        user.refreshTokens.push(generatedRefreshToken);
+        await user.save();
+        currentRefreshToken = generatedRefreshToken;
+      } else {
+        return res
+          .status(403)
+          .json({ status: "error", message: "Invalid refresh token!" });
+      }
+    }
 
     res.status(200).json({
       status: "success",
-      accessToken: `Bearer ${accessToken}`,
-      refreshToken: newRefreshToken,
+      accessToken,
+      refreshToken: currentRefreshToken,
     });
   } catch (error) {
     res
