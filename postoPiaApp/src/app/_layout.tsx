@@ -45,6 +45,7 @@ const _layout = () => {
         <Stack>
           <Stack.Screen name='index' />
           <Stack.Screen name='home' />
+          <Stack.Screen name='Search' />
         </Stack>
       </ThemeProvider>
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
