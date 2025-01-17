@@ -17,10 +17,11 @@ import { useTheme } from "../../context/ThemeProvider";
 import { Moon, Sun, Search } from "lucide-react";
 import { getNameInitials } from "../../utils/stringUtil";
 import { useAuth } from "@/context/AuthContext";
+import { Skeleton } from "../ui/skeleton";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const { user, logout } = useAuth();
+  const { user, loading, logout } = useAuth();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -81,6 +82,8 @@ const Navbar = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+          ) : loading ? (
+            <Skeleton className="h-7 w-7 md:h-9 md:w-9 rounded-full" />
           ) : (
             <Link
               to="/login"
