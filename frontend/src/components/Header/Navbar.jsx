@@ -16,9 +16,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useTheme } from "../../context/ThemeProvider";
 import { Moon, Sun, Search } from "lucide-react";
 import { getNameInitials } from "../../utils/stringUtil";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const { user, logout } = useAuth();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -54,26 +56,39 @@ const Navbar = () => {
             {theme === "dark" ? <Sun className="dark:text-white" /> : <Moon />}
           </div>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Avatar className="h-7 w-7 md:h-9 md:w-9">
-                <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
-                <AvatarFallback>
-                  {getNameInitials("Shakti Tamrakar")}
-                </AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Dashboard</DropdownMenuItem>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Log out</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar className="h-7 w-7 md:h-9 md:w-9">
+                  <AvatarImage src="" />
+                  <AvatarFallback>{getNameInitials(user.name)}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link
+              to="/login"
+              className="text-lg font-semibold text-primary-500 dark:text-primary-400"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </nav>
     </>
