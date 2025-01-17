@@ -27,11 +27,18 @@ const Navbar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <nav className="flex items-center justify-between p-5 sticky top-0 z-10 md:px-[60px] lg:px-[120px] lg:py-5 bg-white shadow-md dark:bg-neutral-900">
         <div className="flex items-center justify-center w-32 md:w-44 lg:w-52">
-          <Link to="/">
+          <Link to="/" onClick={ScrollToTop}>
             <img src={theme === "light" ? logoDark : logoLight} alt="Logo" />
           </Link>
         </div>
@@ -87,6 +94,7 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
+              onClick={ScrollToTop}
               className="text-lg font-semibold text-primary-500 dark:text-primary-400"
             >
               Login
