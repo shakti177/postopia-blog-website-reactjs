@@ -1,5 +1,18 @@
 import API from "./axios";
 
+export const registerUser = async (userData) => {
+  try {
+    const response = await API.post("/users/register", userData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
 export const loginUser = async (credentials) => {
   try {
     const response = await API.post("/users/login", credentials);

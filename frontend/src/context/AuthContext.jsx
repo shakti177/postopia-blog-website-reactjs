@@ -1,6 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { fetchUserProfle, loginUser, logoutUser } from "../api/userServices";
+import {
+  fetchUserProfle,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "../api/userServices";
 
 const AuthContext = createContext();
 
@@ -29,6 +34,20 @@ export const AuthProvider = ({ children }) => {
     };
     initialAuth();
   }, []);
+
+  const register = async (userData) => {
+    try {
+      setLoading(true);
+      const response = await registerUser(userData);
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      setUser(response.data);
+      setError(null);
+      setLoading(false);
+    } catch (error) {
+      setError(error.response.message);
+    }
+  };
 
   const login = async (credentials) => {
     setLoading(true);
@@ -61,7 +80,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, error, login, logout, loading }}>
+    <AuthContext.Provider
+      value={{ user, error, login, logout, register, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );
