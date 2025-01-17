@@ -8,9 +8,9 @@ const db = require("./config/mongo-connection");
 const usersRouter = require("./routes/user-router");
 const postsRouter = require("./routes/post-router");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Welcome to Postopia");

@@ -43,9 +43,10 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("refreshToken", response.refreshToken);
       setUser(response.data);
       setError(null);
-      setLoading(false);
     } catch (error) {
       setError(error.response.message);
+    } finally {
+      setLoading(false);
     }
   };
 

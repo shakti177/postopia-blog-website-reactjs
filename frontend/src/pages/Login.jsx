@@ -18,7 +18,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { user, error, login, isAuthenticated } = useAuth();
+  const { login, error } = useAuth();
 
   const Navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login({ email, password });
-      if (isAuthenticated) {
+      if (!error) {
         Navigate("/");
       }
     } catch (error) {
