@@ -223,3 +223,27 @@ module.exports.postByCategory = async (req, res) => {
     });
   }
 };
+
+module.exports.postByAuthor = async (req, res) => {
+  const { authorId } = req.query;
+
+  try {
+    if (!authorId) {
+      return res.status(400).json({
+        status: "error",
+        message: "authorId query parameter is required!",
+      });
+    }
+
+    const posts = await postModel
+      .find({ author: authorId })
+      .sort({ createdAt: -1 });
+
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error!",
+    });
+  }
+};
