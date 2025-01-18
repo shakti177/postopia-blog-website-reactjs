@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 import {
   apiCreatePost,
   apiDeletePost,
@@ -123,5 +123,26 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  return <postContext.Provider value={{}}>{children}</postContext.Provider>;
+  return (
+    <postContext.Provider
+      value={{
+        posts,
+        loading,
+        error,
+        fetchPosts,
+        fetchPost,
+        createPost,
+        updatePost,
+        deletePost,
+        fetchByCategory,
+        postThumbnail,
+      }}
+    >
+      {children}
+    </postContext.Provider>
+  );
+};
+
+export const usePost = () => {
+  return useContext(postContext);
 };
