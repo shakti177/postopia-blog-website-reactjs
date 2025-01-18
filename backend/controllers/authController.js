@@ -228,7 +228,12 @@ module.exports.getUser = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      data: { name: user.name, email: user.email },
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt,
+      },
     });
   } catch (error) {
     console.error(error);
