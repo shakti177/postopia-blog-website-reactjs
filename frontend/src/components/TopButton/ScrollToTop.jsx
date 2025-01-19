@@ -6,7 +6,7 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > 200) {
         setShowBtn(true);
       } else {
         setShowBtn(false);
@@ -26,7 +26,7 @@ const ScrollToTop = () => {
       {showBtn && (
         <button
           onClick={goToTop}
-          className="fixed bottom-5 right-5 p-3 bg-blue-800 dark:bg-neutral-900 text-white rounded-full shadow-lg z-10 focus:outline-none"
+          className="fixed bottom-10 right-10 p-3 bg-blue-800 dark:bg-neutral-700 text-white rounded-full shadow-lg z-10 focus:outline-none"
         >
           <ChevronUp />
         </button>
