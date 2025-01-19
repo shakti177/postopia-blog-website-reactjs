@@ -233,6 +233,7 @@ module.exports.getUser = async (req, res) => {
         name: user.name,
         email: user.email,
         createdAt: user.createdAt,
+        profilePicture: user.profilePicture,
       },
     });
   } catch (error) {
