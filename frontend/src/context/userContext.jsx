@@ -29,7 +29,6 @@ export const UserProvider = ({ children }) => {
       const response = await deleteUser(accessToken);
       setUser(null);
       localStorage.clear();
-      console.log(response);
     } catch (error) {
       console.error(error);
     } finally {
@@ -37,7 +36,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const uploadUserProfilePicture = async (formData) => {
+  const uploadUserAvatar = async (formData) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
@@ -52,11 +51,12 @@ export const UserProvider = ({ children }) => {
   return (
     <userContext.Provider
       value={{
-        updateUserProfile,
-        deleteUserProfile,
-        uploadUserProfilePicture,
+        user,
         loading,
         error,
+        updateUserProfile,
+        deleteUserProfile,
+        uploadUserAvatar,
       }}
     >
       {children}

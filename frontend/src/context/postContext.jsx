@@ -4,6 +4,7 @@ import {
   apiDeletePost,
   apiFetchPost,
   apiFetchPostByCategory,
+  apiFetchPostByUser,
   apiFetchPosts,
   apiPostThumbnail,
   apiUpdatePost,
@@ -123,19 +124,33 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const fetchByAuthor = async (userId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await apiFetchPostByUser(userId);
+      setPosts(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <postContext.Provider
       value={{
         posts,
         loading,
         error,
+        createPost,
         fetchPosts,
         fetchPost,
-        createPost,
         updatePost,
         deletePost,
         fetchByCategory,
         postThumbnail,
+        fetchByAuthor,
       }}
     >
       {children}

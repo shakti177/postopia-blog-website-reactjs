@@ -86,3 +86,12 @@ export const apiPostThumbnail = async (thumbnailData, postID, accessToken) => {
     return error.response.data;
   }
 };
+
+export const apiFetchPostByUser = async (userId) => {
+  try {
+    const response = await API.get(`/posts/user/?userId=${userId}`);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
