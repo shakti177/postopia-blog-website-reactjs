@@ -112,6 +112,7 @@ module.exports.loginUser = async (req, res) => {
           accessToken: `${accessToken}`,
           refreshToken: `${refreshToken}`,
           data: {
+            id: user._id,
             name: user.name,
             email: user.email,
             createdAt: user.createdAt,
