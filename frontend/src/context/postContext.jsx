@@ -17,7 +17,7 @@ export const PostProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const createPost = async (postData, accessToken) => {
+  const createPost = async (postData) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
@@ -57,7 +57,7 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const updatePost = async (postId, postData, accessToken) => {
+  const updatePost = async (postId, postData) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
@@ -75,7 +75,7 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const deletePost = async (postId, accessToken) => {
+  const deletePost = async (postId) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
@@ -102,7 +102,7 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const postThumbnail = async (thumbnailData, postId, accessToken) => {
+  const postThumbnail = async (thumbnailData, postId) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
@@ -124,12 +124,12 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const fetchByAuthor = async (userId) => {
+  const fetchByUser = async (userId) => {
     setLoading(true);
     setError(null);
     try {
       const response = await apiFetchPostByUser(userId);
-      setPosts(response.data);
+      setPosts(response);
     } catch (error) {
       console.error(error);
     } finally {
@@ -150,7 +150,7 @@ export const PostProvider = ({ children }) => {
         deletePost,
         fetchByCategory,
         postThumbnail,
-        fetchByAuthor,
+        fetchByUser,
       }}
     >
       {children}

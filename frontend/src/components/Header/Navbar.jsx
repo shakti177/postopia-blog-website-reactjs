@@ -77,7 +77,9 @@ const Navbar = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>Dashboard</DropdownMenuItem>
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <Link to="/profile">
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                  </Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem

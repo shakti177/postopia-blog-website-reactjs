@@ -70,10 +70,10 @@ export const AuthProvider = ({ children }) => {
       const refreshToken = localStorage.getItem("refreshToken");
       if (refreshToken) {
         await logoutUser(refreshToken);
-
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         setUser(null);
+        window.location.href = "/login";
       }
     } catch (error) {
       console.error("Failed to logout");
