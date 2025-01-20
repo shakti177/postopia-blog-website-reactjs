@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
     refreshTokens: [String],
     profilePicture: {
       type: String,
-      default: `https://avatar.iran.liara.run/public/boy/${generateNumber()}.jpg`,
+      default: `https://avatar.iran.liara.run/public/${generateNumber()}`,
     },
   },
   { timestamps: true }
