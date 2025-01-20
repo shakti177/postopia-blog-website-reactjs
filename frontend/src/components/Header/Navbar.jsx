@@ -68,7 +68,7 @@ const Navbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="h-7 w-7 md:h-9 md:w-9">
-                  <AvatarImage src="" />
+                  <AvatarImage src={user.profilePicture} />
                   <AvatarFallback>{getNameInitials(user.name)}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>

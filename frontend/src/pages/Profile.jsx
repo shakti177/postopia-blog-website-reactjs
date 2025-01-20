@@ -43,7 +43,11 @@ const Profile = () => {
           <div className="basis-[40%] sticky top-28 h-full overflow-auto lg:block">
             <div className="flex flex-col border-l gap-5 p-6">
               <div className="flex items-center space-x-4">
-                <img src="" alt="profile" className="w-32 h-32 rounded-full" />
+                <img
+                  src={user?.profilePicture}
+                  alt="profile"
+                  className="w-32 h-32 rounded-full object-cover"
+                />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
