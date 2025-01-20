@@ -80,7 +80,7 @@ const Profile = () => {
                 />
               </div>
               <div className="flex flex-col items-center md:items-start space-y-2 mt-4">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h2 className="text-xl md:text-lg font-semibold text-gray-900 dark:text-white">
                   {user?.name || "Anonymous User"}
                 </h2>
                 <p className="text-gray-500 dark:text-gray-300">

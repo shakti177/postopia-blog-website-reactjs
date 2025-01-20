@@ -13,7 +13,9 @@ const NotFound = () => {
           to acces a page that has been deleted or never even existed.
         </p>
         <Link to="/">
-          <Button>Back to Home</Button>
+          <Button className="bg-blue-800 hover:bg-blue-700">
+            Back to Home
+          </Button>
         </Link>
       </div>
     </>

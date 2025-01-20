@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
+function generateNumber() {
+  return Math.floor(1 + Math.random() * 50);
+}
+
 const userSchema = new mongoose.Schema(
   {
     name: String,
@@ -14,7 +18,7 @@ const userSchema = new mongoose.Schema(
     refreshTokens: [String],
     profilePicture: {
       type: String,
-      default: "https://avatar.iran.liara.run/public/41",
+      default: `https://avatar.iran.liara.run/public/boy/${generateNumber()}.jpg`,
     },
   },
   { timestamps: true }

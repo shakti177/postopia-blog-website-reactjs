@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useTheme } from "../../context/ThemeProvider";
-import { Moon, Sun, Search } from "lucide-react";
+import { Moon, Sun, Search, SquarePen } from "lucide-react";
 import { getNameInitials } from "../../utils/stringUtil";
 import { useAuth } from "@/context/AuthContext";
 import { Skeleton } from "../ui/skeleton";
@@ -59,6 +59,15 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
+          {user && (
+            <div className="hidden lg:flex items-center space-x-4">
+              <Link to="/create" onClick={ScrollToTop} className="flex gap-2">
+                <SquarePen strokeWidth={1.5} />
+                Write
+              </Link>
+            </div>
+          )}
 
           <div onClick={toggleTheme}>
             {theme === "dark" ? <Sun className="dark:text-white" /> : <Moon />}
