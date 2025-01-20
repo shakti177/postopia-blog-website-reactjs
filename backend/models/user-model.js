@@ -12,7 +12,10 @@ const userSchema = new mongoose.Schema(
       },
     ],
     refreshTokens: [String],
-    profilePicture: String,
+    profilePicture: {
+      type: String,
+      default: "https://avatar.iran.liara.run/public/41",
+    },
   },
   { timestamps: true }
 );
