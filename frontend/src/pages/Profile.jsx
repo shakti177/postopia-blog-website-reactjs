@@ -3,6 +3,8 @@ import { useAuth } from "@/context/AuthContext";
 import { usePost } from "@/context/postContext";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/utils/dataUtil";
+import { getNameInitials } from "@/utils/stringUtil";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -17,19 +19,47 @@ const Profile = () => {
   return (
     <div className="bg-white dark:bg-black">
       <div className="container mx-auto px-5 md:px-10 py-4">
-        <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10">
+        <div className="flex flex-col-reverse md:flex-row gap-14 my-7">
           {/* Blog Section */}
           <div className="basis-[60%]">
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h1 className="text-xl text-gray-900 dark:text-white mb-7 md:mb-5 border-b pb-4">
               Blogs Published
             </h1>
             {posts.length > 0 ? (
               posts.map((post) => (
-                <div key={post._id} className="p-4 border-b">
-                  <h2 className="text-lg font-semibold">{post.title}</h2>
-                  <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-3">
-                    {post.content || "No description available."}
-                  </p>
+                <div
+                  key={post._id}
+                  className="border-b flex items-center space-x-4 pb-4 mb-4"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <Avatar className="size-6">
+                        <AvatarImage src={user?.profilePicture} />
+                        <AvatarFallback>
+                          {getNameInitials(user?.name)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <p className="text-sm text-gray-500 dark:text-gray-300">
+                        {user?.name} • {formatDate(user.createdAt)}
+                      </p>
+                    </div>
+                    <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                      {post.title}
+                    </h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
+                      {post.content || "No description available."}
+                    </p>
+                    <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-2">
+                      {post.category}
+                    </span>
+                  </div>
+                  <div className="w-20 h-20 md:w-32 md:h-32 overflow-hidden rounded-lg">
+                    <img
+                      src={post.thumbnail}
+                      alt="post thumbnail"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </div>
                 </div>
               ))
             ) : (
@@ -40,8 +70,8 @@ const Profile = () => {
           </div>
 
           {/* User Profile */}
-          <div className="basis-[40%] sticky top-28 h-full overflow-auto lg:block">
-            <div className="flex flex-col md:border-l p-6">
+          <div className="basis-[20%]">
+            <div className="flex flex-col items-center justify-center md:items-start md:border-l md:px-10">
               <div className="flex items-center space-x-4">
                 <img
                   src={user?.profilePicture}
@@ -49,7 +79,7 @@ const Profile = () => {
                   className="w-32 h-32 rounded-full object-cover"
                 />
               </div>
-              <div className="space-y-2 mt-4">
+              <div className="flex flex-col items-center md:items-start space-y-2 mt-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {user?.name || "Anonymous User"}
                 </h2>

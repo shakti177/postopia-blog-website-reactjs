@@ -7,7 +7,7 @@ const PublicRoute = ({ element: Component }) => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[80vh]">
-        <div class="w-14 h-14 border-8 border-solid border-gray-200 dark:border-neutral-600 border-r-blue-800 dark:border-r-white rounded-full animate-spin"></div>
+        <div className="w-14 h-14 border-8 border-solid border-gray-200 dark:border-neutral-600 border-r-blue-800 dark:border-r-white rounded-full animate-spin"></div>
       </div>
     );
   }
