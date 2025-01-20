@@ -18,7 +18,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { login, error } = useAuth();
+  const { login, error, loading } = useAuth();
 
   const Navigate = useNavigate();
 
@@ -82,7 +82,7 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-              <Button type="submit" className="w-full mt-6">
+              <Button type="submit" className="w-full mt-6" disabled={loading}>
                 Sign In
               </Button>
             </form>

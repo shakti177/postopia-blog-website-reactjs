@@ -20,8 +20,8 @@ const Profile = () => {
         <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10">
           {/* Blog Section */}
           <div className="basis-[60%]">
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Blog Posts
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              Blogs Published
             </h1>
             {posts.length > 0 ? (
               posts.map((post) => (
@@ -33,15 +33,15 @@ const Profile = () => {
                 </div>
               ))
             ) : (
-              <p className="text-gray-500 dark:text-gray-300">
-                No posts found.
+              <p className="text-gray-500 dark:text-gray-300 text-center rounded-3xl bg-gray-50 dark:bg-neutral-900 p-4">
+                No blogs published
               </p>
             )}
           </div>
 
           {/* User Profile */}
           <div className="basis-[40%] sticky top-28 h-full overflow-auto lg:block">
-            <div className="flex flex-col border-l gap-5 p-6">
+            <div className="flex flex-col md:border-l p-6">
               <div className="flex items-center space-x-4">
                 <img
                   src={user?.profilePicture}
@@ -49,25 +49,23 @@ const Profile = () => {
                   className="w-32 h-32 rounded-full object-cover"
                 />
               </div>
-              <div>
+              <div className="space-y-2 mt-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {user?.name || "Anonymous User"}
                 </h2>
-              </div>
-              <div>
                 <p className="text-gray-500 dark:text-gray-300">
                   {user?.email || "No email available"}
                 </p>
               </div>
-              <div>
+              <div className="flex items-center justify-between mt-4">
                 <p>{posts.length} Blogs</p>
               </div>
-              <div>
+              <div className="mt-4">
                 <Button className="bg-blue-800 hover:bg-blue-700">
                   Edit Profile
                 </Button>
               </div>
-              <div>
+              <div className="mt-4">
                 <p>
                   Joined on{" "}
                   {user?.createdAt ? formatDate(user.createdAt) : "Loading..."}
