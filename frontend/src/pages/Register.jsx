@@ -19,7 +19,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { register, error } = useAuth();
+  const { register, error, loading } = useAuth();
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -93,7 +93,11 @@ const Register = () => {
                   </div>
                 </div>
               </div>
-              <Button type="submit" className="w-full mt-6">
+              <Button
+                type="submit"
+                className="w-full mt-6 bg-blue-800 hover:bg-blue-700"
+                disabled={loading}
+              >
                 Sign Up
               </Button>
             </form>
