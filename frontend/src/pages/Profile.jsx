@@ -12,7 +12,7 @@ const Profile = () => {
     if (user?.id) {
       fetchByUser(user.id);
     }
-  }, [user?.id, fetchByUser]);
+  }, [user?.id]);
 
   return (
     <div className="bg-white dark:bg-black">
