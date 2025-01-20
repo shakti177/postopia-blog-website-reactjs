@@ -116,6 +116,7 @@ module.exports.loginUser = async (req, res) => {
             name: user.name,
             email: user.email,
             createdAt: user.createdAt,
+            profilePicture: user.profilePicture,
           },
         });
       }
