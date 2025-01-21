@@ -62,7 +62,7 @@ const Navbar = () => {
 
           {user && (
             <div className="hidden lg:flex items-center space-x-4">
-              <Link to="/create" onClick={ScrollToTop} className="flex gap-2">
+              <Link to="/write" onClick={ScrollToTop} className="flex gap-2">
                 <SquarePen strokeWidth={1.5} />
                 Write
               </Link>

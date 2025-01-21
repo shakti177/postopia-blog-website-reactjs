@@ -4,11 +4,11 @@ import Navbar from "./components/Header/Navbar";
 import Home from "./pages/Home";
 import Footerbar from "./components/Footer/Footerbar";
 import NotFound from "./pages/NotFound";
-import Demo from "./pages/Demo";
 import ScrollToTop from "./components/TopButton/ScrollToTop";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Write from "./pages/Write";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 
@@ -25,7 +25,7 @@ const App = () => {
             path="/register"
             element={<PublicRoute element={Register} />}
           />
-          <Route path="/demo" element={<Demo />} />
+          <Route path="/write" element={<Write />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
