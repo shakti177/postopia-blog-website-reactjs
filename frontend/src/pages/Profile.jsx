@@ -29,10 +29,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Profile = () => {
-  const { user } = useAuth();
-  const { posts, fetchByUser } = usePost();
+  const { user, loading } = useAuth();
+  const { posts, fetchByUser, loading: postLoading } = usePost();
   const { updateUserProfile, uploadUserAvatar, deleteUserProfile } = useUser();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(user?.name || "");
@@ -64,7 +65,27 @@ const Profile = () => {
             <h1 className="text-xl text-gray-900 dark:text-white mb-7 md:mb-5 border-b pb-4">
               Blogs Published
             </h1>
-            {posts.length > 0 ? (
+            {postLoading ? (
+              Array(3)
+                .fill(0)
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    className="border-b flex items-center space-x-4 pb-4 mb-4 animate-pulse"
+                  >
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <div className="size-6 bg-gray-200 rounded-full dark:bg-neutral-800"></div>
+                        <div className="w-32 h-4 bg-gray-200 dark:bg-neutral-800 rounded"></div>
+                      </div>
+                      <div className="w-40 h-4 bg-gray-200 dark:bg-neutral-800 rounded mb-2"></div>
+                      <div className="w-56 h-4 bg-gray-200 dark:bg-neutral-800 rounded"></div>
+                      <div className="w-12 h-4 bg-gray-200 dark:bg-neutral-800 rounded mt-4"></div>
+                    </div>
+                    <div className="w-20 h-20 md:w-32 md:h-32 bg-gray-200 dark:bg-neutral-800 rounded-lg"></div>
+                  </div>
+                ))
+            ) : posts.length > 0 ? (
               posts.map((post) => (
                 <div
                   key={post._id}
@@ -112,165 +133,188 @@ const Profile = () => {
 
           {/* User Profile */}
           <div className="basis-[20%]">
-            <div className="flex flex-col items-center justify-center md:items-start md:border-l md:px-10">
-              <div className="flex items-center space-x-4">
-                <img
-                  src={user?.profilePicture}
-                  alt="profile"
-                  className="w-32 h-32 rounded-full object-cover"
-                />
+            {loading ? (
+              <div className="flex flex-col items-center justify-center md:items-start md:border-l md:px-10">
+                <Skeleton className="size-32 rounded-full" />
+                <div className="flex flex-col items-center md:items-start space-y-2 mt-4">
+                  <Skeleton className="w-32 h-5" />
+                  <Skeleton className="w-40 h-5" />
+                  <Skeleton className="w-36 h-5" />
+                </div>
+                <div className="flex flex-col gap-2 justify-between mt-4">
+                  <Skeleton className="w-28 h-5" />
+                  <Skeleton className="w-20 h-5" />
+                </div>
               </div>
-              <div className="flex flex-col items-center md:items-start space-y-2 mt-4">
-                <h2 className="text-xl md:text-lg font-semibold text-gray-900 dark:text-white">
-                  {user?.name || "Anonymous User"}
-                </h2>
-                <p className="text-gray-500 dark:text-gray-300">
-                  {user?.email || "No email available"}
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <p>{posts.length} Blogs</p>
-              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center md:items-start md:border-l md:px-10">
+                <div className="flex items-center space-x-4">
+                  <img
+                    src={user?.profilePicture}
+                    alt="profile"
+                    className="w-32 h-32 rounded-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col items-center md:items-start space-y-2 mt-4">
+                  <h2 className="text-xl md:text-lg font-semibold text-gray-900 dark:text-white">
+                    {user?.name || "Anonymous User"}
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-300">
+                    {user?.email || "No email available"}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-4">
+                  <p>{posts.length} Blogs</p>
+                </div>
 
-              {/* Edit Profile Section */}
-              <div className="mt-4">
-                <Dialog open={open} onOpenChange={setOpen}>
-                  <DialogTrigger asChild>
-                    <Button className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700">
-                      Edit Profile
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle className="text-xl font-semibold">
+                {/* Edit Profile Section */}
+                <div className="mt-4">
+                  <Dialog open={open} onOpenChange={setOpen}>
+                    <DialogTrigger asChild>
+                      <Button className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700">
                         Edit Profile
-                      </DialogTitle>
-                      <DialogDescription>
-                        Make changes to your profile here.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="relative">
-                          <Avatar className="w-20 h-20">
-                            <AvatarImage
-                              src={user?.profilePicture}
-                              alt="Profile picture"
-                              className="w-full h-full object-cover"
-                            />
-                            <AvatarFallback>
-                              {getNameInitials(user?.name)}
-                            </AvatarFallback>
-                          </Avatar>
-                          <label
-                            htmlFor="picture"
-                            className="absolute bottom-0 right-0 bg-primary text-primary-foreground p-1 rounded-full cursor-pointer hover:bg-primary/90 transition-colors"
-                          >
-                            <Camera className="w-4 h-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle className="text-xl font-semibold">
+                          Edit Profile
+                        </DialogTitle>
+                        <DialogDescription>
+                          Make changes to your profile here.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="relative">
+                            <Avatar className="w-20 h-20">
+                              <AvatarImage
+                                src={user?.profilePicture}
+                                alt="Profile picture"
+                                className="w-full h-full object-cover"
+                              />
+                              <AvatarFallback>
+                                {getNameInitials(user?.name)}
+                              </AvatarFallback>
+                            </Avatar>
+                            <label
+                              htmlFor="picture"
+                              className="absolute bottom-0 right-0 bg-primary text-primary-foreground p-1 rounded-full cursor-pointer hover:bg-primary/90 transition-colors"
+                            >
+                              <Camera className="w-4 h-4" />
+                              <Input
+                                id="picture"
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                              />
+                            </label>
+                          </div>
+                          <div className="flex-1">
+                            <Label
+                              htmlFor="name"
+                              className="text-sm font-medium"
+                            >
+                              Name
+                            </Label>
                             <Input
-                              id="picture"
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
+                              id="name"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="mt-1"
                             />
-                          </label>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <Label htmlFor="name" className="text-sm font-medium">
-                            Name
+                        <div>
+                          <Label
+                            htmlFor="email"
+                            className="text-sm font-medium"
+                          >
+                            Email
                           </Label>
                           <Input
-                            id="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            id="email"
+                            value={user?.email}
+                            disabled
                             className="mt-1"
                           />
                         </div>
-                      </div>
-                      <div>
-                        <Label htmlFor="email" className="text-sm font-medium">
-                          Email
-                        </Label>
-                        <Input
-                          id="email"
-                          value={user?.email}
-                          disabled
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <Label
-                          htmlFor="old-password"
-                          className="text-sm font-medium"
-                        >
-                          Old password
-                        </Label>
-                        <Input
-                          id="old-password"
-                          type="password"
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <Label
-                          htmlFor="new-password"
-                          className="text-sm font-medium"
-                        >
-                          New password
-                        </Label>
-                        <Input
-                          id="new-password"
-                          type="password"
-                          className="mt-1"
-                        />
-                      </div>
-                      <DialogFooter>
-                        <Button type="submit" className="w-full sm:w-auto">
-                          Save changes
-                        </Button>
-                      </DialogFooter>
-                    </form>
-                  </DialogContent>
-                </Dialog>
-              </div>
+                        <div>
+                          <Label
+                            htmlFor="old-password"
+                            className="text-sm font-medium"
+                          >
+                            Old password
+                          </Label>
+                          <Input
+                            id="old-password"
+                            type="password"
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label
+                            htmlFor="new-password"
+                            className="text-sm font-medium"
+                          >
+                            New password
+                          </Label>
+                          <Input
+                            id="new-password"
+                            type="password"
+                            className="mt-1"
+                          />
+                        </div>
+                        <DialogFooter>
+                          <Button type="submit" className="w-full sm:w-auto">
+                            Save changes
+                          </Button>
+                        </DialogFooter>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+                </div>
 
-              {/* Edit Profile Section Ends  */}
+                {/* Edit Profile Section Ends  */}
 
-              <div className="mt-4">
-                <p>
-                  Joined on{" "}
-                  {user?.createdAt ? formatDate(user.createdAt) : "Loading..."}
-                </p>
+                <div className="mt-4">
+                  <p>
+                    Joined on{" "}
+                    {user?.createdAt
+                      ? formatDate(user.createdAt)
+                      : "Loading..."}
+                  </p>
+                </div>
+                <div className="mt-7">
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <div className="flex gap-1 items-center text-red-500 cursor-pointer">
+                        <Trash2 size={18} />
+                        Delete Account
+                      </div>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          Are you absolutely sure?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          delete your account and remove your data from our
+                          servers.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleDeleteUser}>
+                          Continue
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
               </div>
-              <div className="mt-7">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <div className="flex gap-1 items-center text-red-500 cursor-pointer">
-                      <Trash2 size={18} />
-                      Delete Account
-                    </div>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        Are you absolutely sure?
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This action cannot be undone. This will permanently
-                        delete your account and remove your data from our
-                        servers.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction onClick={handleDeleteUser}>
-                        Continue
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
