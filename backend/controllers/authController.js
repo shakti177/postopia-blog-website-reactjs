@@ -193,7 +193,7 @@ module.exports.updateUser = async (req, res) => {
         });
       }
 
-      const isMatch = await bcrypt.compare(oldPassword, user.password);
+      const isMatch = bcrypt.compare(oldPassword, user.password);
       if (!isMatch) {
         return res.status(400).json({
           status: "error",

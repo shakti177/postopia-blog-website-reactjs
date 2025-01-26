@@ -87,7 +87,9 @@ const Navbar = () => {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>Dashboard</DropdownMenuItem>
                   <Link to="/profile">
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem onClick={ScrollToTop}>
+                      Profile
+                    </DropdownMenuItem>
                   </Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

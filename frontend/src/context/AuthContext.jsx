@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import {
-  fetchUserProfle,
+  fetchUserProfile,
   loginUser,
   logoutUser,
   registerUser,
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
       if (accessToken) {
         try {
-          const userProfile = await fetchUserProfle(accessToken);
+          const userProfile = await fetchUserProfile(accessToken);
           setUser(userProfile.data);
           setError(null);
         } catch (error) {
@@ -43,8 +43,8 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("refreshToken", response.refreshToken);
       setUser(response.data);
       setError(null);
-    } catch (error) {
-      setError(error.response.message);
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -54,12 +54,13 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await loginUser(credentials);
+      setUser(response.data);
       localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      setUser(response.data);
       setError(null);
-    } catch (error) {
-      setError(error.response.message);
+    } catch (err) {
+      setError(err.message || "Invalid email or password");
+      throw err;
     } finally {
       setLoading(false);
     }

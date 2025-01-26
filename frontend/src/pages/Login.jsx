@@ -20,17 +20,17 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login, error, loading } = useAuth();
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await login({ email, password });
       if (!error) {
-        Navigate("/");
+        navigate("/");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -79,6 +79,9 @@ const Login = () => {
                         <Eye className="h-5 w-5" />
                       )}
                     </button>
+                  </div>
+                  <div>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                   </div>
                 </div>
               </div>

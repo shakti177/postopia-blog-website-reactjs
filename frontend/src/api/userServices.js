@@ -14,11 +14,11 @@ export const loginUser = async (credentials) => {
     const response = await API.post("/users/login", credentials);
     return response.data;
   } catch (error) {
-    return error.response.data;
+    throw error.response.data;
   }
 };
 
-export const fetchUserProfle = async (accessToken) => {
+export const fetchUserProfile = async (accessToken) => {
   try {
     const response = await API.get("/users/profile", {
       headers: {
@@ -66,17 +66,16 @@ export const deleteUser = async (accessToken) => {
   }
 };
 
-export const uploadAvatar = async (accessToken, profilePicture) => {
+export const uploadAvatar = async (accessToken, formData) => {
   try {
-    const formData = new FormData();
-    formData.append("profilePicture", profilePicture);
     const response = await API.post("/users/upload-profile-picture", formData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "multipart/form-data",
       },
     });
     return response.data;
   } catch (error) {
-    return error.response;
+    return error.response?.data || { message: "Unknown error occurred" };
   }
 };
