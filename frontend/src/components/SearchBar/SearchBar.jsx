@@ -29,7 +29,7 @@ const SearchBar = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           onKeyPress={handleKeyPress}
-          className="outline-none"
+          className="outline-none pr-14"
           placeholder="Search..."
         />
 

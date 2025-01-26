@@ -18,7 +18,7 @@ const App = () => {
       <ScrollToTop />
       <BrowserRouter>
         <Navbar />
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<PublicRoute element={Login} />} />
           <Route
@@ -29,6 +29,14 @@ const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/write" element={<Write />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footerbar />

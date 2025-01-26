@@ -1,4 +1,7 @@
 export function getNameInitials(name) {
+  if (!name) {
+    return "";
+  }
   const words = name.trim().split(/\s+/);
 
   if (words.length === 1) {

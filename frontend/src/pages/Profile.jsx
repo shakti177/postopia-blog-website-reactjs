@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { usePost } from "@/context/postContext";
 import { formatDate } from "@/utils/dataUtil";
 import { getNameInitials } from "@/utils/stringUtil";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ProfileEdit from "@/components/EditProfile/ProfileEdit";
-import { Trash2 } from "lucide-react";
+import { Camera, Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,20 +17,42 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useUser } from "@/context/userContext";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const Profile = () => {
   const { user } = useAuth();
   const { posts, fetchByUser } = usePost();
-  const { deleteUserProfile } = useUser();
+  const { updateUserProfile, uploadUserAvatar, deleteUserProfile } = useUser();
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState(user?.name || "");
 
   useEffect(() => {
     if (user?.id) {
-      fetchByUser(user.id);
+      const fetchData = async () => {
+        await fetchByUser(user.id);
+      };
+      fetchData();
     }
   }, [user?.id]);
 
   const handleDeleteUser = async () => {
     await deleteUserProfile();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOpen(false);
   };
 
   return (
@@ -50,24 +71,24 @@ const Profile = () => {
                   className="border-b flex items-center space-x-4 pb-4 mb-4"
                 >
                   <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-2">
+                    <div className="flex items-center space-x-3 mb-3">
                       <Avatar className="size-6">
-                        <AvatarImage src={user.profilePicture} />
+                        <AvatarImage src={user?.profilePicture} />
                         <AvatarFallback>
                           {getNameInitials(user?.name)}
                         </AvatarFallback>
                       </Avatar>
                       <p className="text-sm text-gray-500 dark:text-gray-300">
-                        {user?.name} • {formatDate(user.createdAt)}
+                        {user?.name} • {formatDate(user?.createdAt)}
                       </p>
                     </div>
-                    <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-3">
                       {post.title}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
                       {post.content || "No description available."}
                     </p>
-                    <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-2">
+                    <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
                       {post.category}
                     </span>
                   </div>
@@ -81,11 +102,13 @@ const Profile = () => {
                 </div>
               ))
             ) : (
-              <p className="text-gray-500 dark:text-gray-300 text-center rounded-3xl bg-gray-50 dark:bg-neutral-900 p-4">
+              <p className="text-gray-500 dark:text-gray-300 text-center rounded-3xl bg-gray-100 dark:bg-neutral-900 p-4">
                 No blogs published
               </p>
             )}
           </div>
+
+          {/* Blog Section Ends */}
 
           {/* User Profile */}
           <div className="basis-[20%]">
@@ -108,9 +131,111 @@ const Profile = () => {
               <div className="flex items-center justify-between mt-4">
                 <p>{posts.length} Blogs</p>
               </div>
+
+              {/* Edit Profile Section */}
               <div className="mt-4">
-                <ProfileEdit />
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700">
+                      Edit Profile
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle className="text-xl font-semibold">
+                        Edit Profile
+                      </DialogTitle>
+                      <DialogDescription>
+                        Make changes to your profile here.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="flex items-center space-x-4">
+                        <div className="relative">
+                          <Avatar className="w-20 h-20">
+                            <AvatarImage
+                              src={user?.profilePicture}
+                              alt="Profile picture"
+                              className="w-full h-full object-cover"
+                            />
+                            <AvatarFallback>
+                              {getNameInitials(user?.name)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <label
+                            htmlFor="picture"
+                            className="absolute bottom-0 right-0 bg-primary text-primary-foreground p-1 rounded-full cursor-pointer hover:bg-primary/90 transition-colors"
+                          >
+                            <Camera className="w-4 h-4" />
+                            <Input
+                              id="picture"
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                            />
+                          </label>
+                        </div>
+                        <div className="flex-1">
+                          <Label htmlFor="name" className="text-sm font-medium">
+                            Name
+                          </Label>
+                          <Input
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="mt-1"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <Label htmlFor="email" className="text-sm font-medium">
+                          Email
+                        </Label>
+                        <Input
+                          id="email"
+                          value={user?.email}
+                          disabled
+                          className="mt-1"
+                        />
+                      </div>
+                      <div>
+                        <Label
+                          htmlFor="old-password"
+                          className="text-sm font-medium"
+                        >
+                          Old password
+                        </Label>
+                        <Input
+                          id="old-password"
+                          type="password"
+                          className="mt-1"
+                        />
+                      </div>
+                      <div>
+                        <Label
+                          htmlFor="new-password"
+                          className="text-sm font-medium"
+                        >
+                          New password
+                        </Label>
+                        <Input
+                          id="new-password"
+                          type="password"
+                          className="mt-1"
+                        />
+                      </div>
+                      <DialogFooter>
+                        <Button type="submit" className="w-full sm:w-auto">
+                          Save changes
+                        </Button>
+                      </DialogFooter>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               </div>
+
+              {/* Edit Profile Section Ends  */}
+
               <div className="mt-4">
                 <p>
                   Joined on{" "}
