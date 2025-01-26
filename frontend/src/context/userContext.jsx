@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useAuth } from "./AuthContext";
-import { updateUser } from "../api/userServices";
+import { deleteUser, updateUser, uploadAvatar } from "../api/userServices";
 
 const userContext = createContext();
 
@@ -42,9 +42,17 @@ export const UserProvider = ({ children }) => {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const response = await uploadAvatar(accessToken, formData);
-      setUser(response.data);
+      console.log(response);
+      if (response.data) {
+        setUser((user) => ({
+          ...user,
+          profilePicture: response.data.profilePicture,
+        }));
+      }
     } catch (error) {
-      console.error(error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

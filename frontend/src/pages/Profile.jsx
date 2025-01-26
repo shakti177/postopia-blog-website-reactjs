@@ -1,20 +1,38 @@
 import React, { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { usePost } from "@/context/postContext";
-import { Button } from "@/components/ui/button";
 import { formatDate } from "@/utils/dataUtil";
 import { getNameInitials } from "@/utils/stringUtil";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ProfileEdit from "@/components/EditProfile/ProfileEdit";
+import { Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useUser } from "@/context/userContext";
 
 const Profile = () => {
   const { user } = useAuth();
   const { posts, fetchByUser } = usePost();
+  const { deleteUserProfile } = useUser();
 
   useEffect(() => {
     if (user?.id) {
       fetchByUser(user.id);
     }
   }, [user?.id]);
+
+  const handleDeleteUser = async () => {
+    await deleteUserProfile();
+  };
 
   return (
     <div className="bg-white dark:bg-black">
@@ -34,7 +52,7 @@ const Profile = () => {
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
                       <Avatar className="size-6">
-                        <AvatarImage src={user?.profilePicture} />
+                        <AvatarImage src={user.profilePicture} />
                         <AvatarFallback>
                           {getNameInitials(user?.name)}
                         </AvatarFallback>
@@ -91,15 +109,41 @@ const Profile = () => {
                 <p>{posts.length} Blogs</p>
               </div>
               <div className="mt-4">
-                <Button className="bg-blue-800 hover:bg-blue-700">
-                  Edit Profile
-                </Button>
+                <ProfileEdit />
               </div>
               <div className="mt-4">
                 <p>
                   Joined on{" "}
                   {user?.createdAt ? formatDate(user.createdAt) : "Loading..."}
                 </p>
+              </div>
+              <div className="mt-7">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <div className="flex gap-1 items-center text-red-500 cursor-pointer">
+                      <Trash2 size={18} />
+                      Delete Account
+                    </div>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleDeleteUser}>
+                        Continue
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
           </div>
