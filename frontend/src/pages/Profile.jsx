@@ -141,7 +141,7 @@ const Profile = () => {
                   <Skeleton className="w-40 h-5" />
                   <Skeleton className="w-36 h-5" />
                 </div>
-                <div className="flex flex-col gap-2 justify-between mt-4">
+                <div className="flex flex-col gap-2 items-center md:items-start mt-4">
                   <Skeleton className="w-28 h-5" />
                   <Skeleton className="w-20 h-5" />
                 </div>
