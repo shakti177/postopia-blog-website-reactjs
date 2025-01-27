@@ -309,7 +309,10 @@ const Profile = () => {
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={handleDeleteUser}>
+                        <AlertDialogAction
+                          onClick={handleDeleteUser}
+                          className="bg-blue-800 hover:bg-blue-700"
+                        >
                           Continue
                         </AlertDialogAction>
                       </AlertDialogFooter>
