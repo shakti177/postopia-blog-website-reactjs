@@ -216,12 +216,7 @@ const Profile = () => {
                             >
                               Name
                             </Label>
-                            <Input
-                              id="name"
-                              value={name}
-                              onChange={(e) => setName(e.target.value)}
-                              className="mt-1"
-                            />
+                            <Input id="name" className="mt-1" />
                           </div>
                         </div>
                         <div>
