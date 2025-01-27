@@ -5,8 +5,7 @@ import { deleteUser, updateUser, uploadAvatar } from "../api/userServices";
 const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { user, setUser } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const { user, setUser, loading, setLoading } = useAuth();
   const [error, setError] = useState(null);
 
   const updateUserProfile = async (userData) => {
@@ -15,7 +14,11 @@ export const UserProvider = ({ children }) => {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const response = await updateUser(userData, accessToken);
-      setUser(response.data);
+      setUser((user) => ({
+        ...user,
+        ...response.name,
+      }));
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -60,7 +63,6 @@ export const UserProvider = ({ children }) => {
     <userContext.Provider
       value={{
         user,
-        loading,
         error,
         updateUserProfile,
         deleteUserProfile,
