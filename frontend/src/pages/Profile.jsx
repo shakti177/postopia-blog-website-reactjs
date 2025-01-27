@@ -278,7 +278,7 @@ const Profile = () => {
                 {/* Edit Profile Section Ends  */}
 
                 <div className="mt-4">
-                  <p>
+                  <p className="font-semibold">
                     Joined on{" "}
                     {user?.createdAt
                       ? formatDate(user.createdAt)
