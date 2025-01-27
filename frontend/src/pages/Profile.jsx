@@ -37,6 +37,8 @@ const Profile = () => {
   const { updateUserProfile, uploadUserAvatar, deleteUserProfile } = useUser();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(user?.name);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
     if (user?.id) {
@@ -53,14 +55,31 @@ const Profile = () => {
     }
   }, [user?.name]);
 
-  const handleDeleteUser = async () => {
-    await deleteUserProfile();
+  const hasChanges = () => {
+    return name !== user?.name || oldPassword || newPassword;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUserProfile({ name });
+
+    const updateData = {
+      name,
+    };
+
+    if (oldPassword && newPassword) {
+      updateData.oldPassword = oldPassword;
+      updateData.newPassword = newPassword;
+    }
+
+    updateUserProfile(updateData);
     setOpen(false);
+
+    setOldPassword("");
+    setNewPassword("");
+  };
+
+  const handleDeleteUser = async () => {
+    await deleteUserProfile();
   };
 
   return (
@@ -110,7 +129,7 @@ const Profile = () => {
                         {user?.name} • {formatDate(user?.createdAt)}
                       </p>
                     </div>
-                    <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3">
+                    <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3 line-clamp-2">
                       {post.title}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
@@ -247,36 +266,30 @@ const Profile = () => {
                           />
                         </div>
                         <div>
-                          <Label
-                            htmlFor="old-password"
-                            className="text-sm font-medium"
-                          >
-                            Old password
+                          <Label className="text-sm font-medium">
+                            Old password (Optional)
                           </Label>
                           <Input
-                            id="old-password"
                             type="password"
                             className="mt-1"
+                            onChange={(e) => setOldPassword(e.target.value)}
                           />
                         </div>
                         <div>
-                          <Label
-                            htmlFor="new-password"
-                            className="text-sm font-medium"
-                          >
-                            New password
+                          <Label className="text-sm font-medium">
+                            New password (Optional)
                           </Label>
                           <Input
-                            id="new-password"
                             type="password"
                             className="mt-1"
+                            onChange={(e) => setNewPassword(e.target.value)}
                           />
                         </div>
                         <DialogFooter>
                           <Button
                             type="submit"
                             className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700"
-                            disabled={loading}
+                            disabled={loading || !hasChanges()}
                           >
                             Save changes
                           </Button>
