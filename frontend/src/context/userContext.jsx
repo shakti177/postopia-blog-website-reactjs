@@ -5,7 +5,7 @@ import { deleteUser, updateUser, uploadAvatar } from "../api/userServices";
 const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { user, setUser, loading, setLoading } = useAuth();
+  const { user, setUser, setLoading } = useAuth();
   const [error, setError] = useState(null);
 
   const updateUserProfile = async (userData) => {

@@ -36,7 +36,6 @@ const Profile = () => {
   const { posts, fetchByUser, loading: postLoading } = usePost();
   const { updateUserProfile, uploadUserAvatar, deleteUserProfile } = useUser();
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState(user?.name || "");
 
   useEffect(() => {
     if (user?.id) {
@@ -103,7 +102,7 @@ const Profile = () => {
                         {user?.name} • {formatDate(user?.createdAt)}
                       </p>
                     </div>
-                    <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                    <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3">
                       {post.title}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
@@ -269,6 +268,7 @@ const Profile = () => {
                           <Button
                             type="submit"
                             className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700"
+                            disabled={loading}
                           >
                             Save changes
                           </Button>
