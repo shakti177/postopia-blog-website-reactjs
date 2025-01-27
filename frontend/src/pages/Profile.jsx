@@ -266,7 +266,10 @@ const Profile = () => {
                           />
                         </div>
                         <DialogFooter>
-                          <Button type="submit" className="w-full sm:w-auto">
+                          <Button
+                            type="submit"
+                            className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700"
+                          >
                             Save changes
                           </Button>
                         </DialogFooter>
