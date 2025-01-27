@@ -36,6 +36,7 @@ const Profile = () => {
   const { posts, fetchByUser, loading: postLoading } = usePost();
   const { updateUserProfile, uploadUserAvatar, deleteUserProfile } = useUser();
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState(user?.name);
 
   useEffect(() => {
     if (user?.id) {
@@ -46,12 +47,19 @@ const Profile = () => {
     }
   }, [user?.id]);
 
+  useEffect(() => {
+    if (user?.name) {
+      setName(user.name);
+    }
+  }, [user?.name]);
+
   const handleDeleteUser = async () => {
     await deleteUserProfile();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    updateUserProfile({ name });
     setOpen(false);
   };
 
@@ -216,7 +224,12 @@ const Profile = () => {
                             >
                               Name
                             </Label>
-                            <Input id="name" className="mt-1" />
+                            <Input
+                              id="name"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="mt-1"
+                            />
                           </div>
                         </div>
                         <div>
