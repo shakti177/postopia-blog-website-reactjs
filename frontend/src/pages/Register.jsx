@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
 const Register = () => {
@@ -21,10 +21,15 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, error, loading } = useAuth();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await register({ name, email, password });
+      if (!error) {
+        navigate("/");
+      }
     } catch (error) {
       console.error(error);
     }
