@@ -13,8 +13,8 @@
       }
     ],
     "env": {
-      "MONGODB_URI": "@MONGODB_URI",
-      "REFRESH_JWT_KEY": "@JWT_KEY",
-      "ACCESS_JWT_KEY": "@REFRESH_JWT_KEY"
+      "MONGODB_URI": "@mongodb_uri",
+      "REFRESH_JWT_KEY": "@refresh_jwt_key",
+      "ACCESS_JWT_KEY": "@access_jwt_key"
     }
   }
