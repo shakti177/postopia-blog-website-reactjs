@@ -4,7 +4,7 @@ import { usePost } from "@/context/postContext";
 import { formatDate } from "@/utils/dataUtil";
 import { getNameInitials } from "@/utils/stringUtil";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Camera, Trash2 } from "lucide-react";
+import { Camera, Eye, EyeOff, Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -41,6 +41,8 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(user?.profilePicture);
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
   useEffect(() => {
     if (user?.id) {
@@ -289,21 +291,51 @@ const Profile = () => {
                           <Label className="text-sm font-medium">
                             Old password (Optional)
                           </Label>
-                          <Input
-                            type="password"
-                            className="mt-1"
-                            onChange={(e) => setOldPassword(e.target.value)}
-                          />
+                          <div className="relative">
+                            <Input
+                              type={showOldPassword ? "text" : "password"}
+                              className="mt-1"
+                              onChange={(e) => setOldPassword(e.target.value)}
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setShowOldPassword(!showOldPassword)
+                              }
+                              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                            >
+                              {showOldPassword ? (
+                                <Eye className="h-5 w-5" />
+                              ) : (
+                                <EyeOff className="h-5 w-5" />
+                              )}
+                            </button>
+                          </div>
                         </div>
                         <div>
                           <Label className="text-sm font-medium">
                             New password (Optional)
                           </Label>
-                          <Input
-                            type="password"
-                            className="mt-1"
-                            onChange={(e) => setNewPassword(e.target.value)}
-                          />
+                          <div className="relative">
+                            <Input
+                              type={showNewPassword ? "text" : "password"}
+                              className="mt-1"
+                              onChange={(e) => setNewPassword(e.target.value)}
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setShowNewPassword(!showNewPassword)
+                              }
+                              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                            >
+                              {showNewPassword ? (
+                                <Eye className="h-5 w-5" />
+                              ) : (
+                                <EyeOff className="h-5 w-5" />
+                              )}
+                            </button>
+                          </div>
                         </div>
                         <DialogFooter>
                           <AlertDialog>
