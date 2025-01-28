@@ -145,7 +145,7 @@ const Profile = () => {
                         </AvatarFallback>
                       </Avatar>
                       <p className="text-sm text-gray-500 dark:text-gray-300">
-                        {user?.name} • {formatDate(user?.createdAt)}
+                        {user?.name} • {formatDate(post?.createdAt)}
                       </p>
                     </div>
                     <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3 line-clamp-2">
