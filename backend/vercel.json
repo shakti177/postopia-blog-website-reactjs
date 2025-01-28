@@ -14,7 +14,7 @@
     ],
     "env": {
       "MONGODB_URI": "@mongodb_uri",
-      "REFRESH_JWT_KEY": "@refresh_jwt_key",
-      "ACCESS_JWT_KEY": "@access_jwt_key"
+      "JWT_KEY": "@jwt_key",
+      "REFRESH_JWT_KEY": "@refresh_jwt_key"
     }
   }
