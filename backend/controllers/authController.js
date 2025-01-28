@@ -66,7 +66,13 @@ module.exports.registerUser = async (req, res) => {
           message: "User registered successfully!",
           accessToken: `${accessToken}`,
           refreshToken: `${refreshToken}`,
-          data: { name: newUser.name, email: newUser.email },
+          data: {
+            id: newUser._id,
+            name: newUser.name,
+            email: newUser.email,
+            createdAt: newUser.createdAt,
+            profilePicture: newUser.profilePicture,
+          },
         });
       });
     });
