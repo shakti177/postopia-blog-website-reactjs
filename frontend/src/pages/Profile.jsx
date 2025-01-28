@@ -39,6 +39,8 @@ const Profile = () => {
   const [name, setName] = useState(user?.name);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(user?.profilePicture);
 
   useEffect(() => {
     if (user?.id) {
@@ -53,15 +55,17 @@ const Profile = () => {
     if (user?.name) {
       setName(user.name);
     }
-  }, [user?.name]);
+    if (user?.profilePicture) {
+      setPreview(user.profilePicture);
+    }
+  }, [user?.name, user?.profilePicture]);
 
   const hasChanges = () => {
-    return name !== user?.name || oldPassword || newPassword;
+    return name !== user?.name || oldPassword || newPassword || selectedFile;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const updateData = {
       name,
     };
@@ -71,11 +75,26 @@ const Profile = () => {
       updateData.newPassword = newPassword;
     }
 
-    updateUserProfile(updateData);
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append("profilePicture", selectedFile);
+      await uploadUserAvatar(formData);
+    }
+
+    await updateUserProfile(updateData);
     setOpen(false);
 
     setOldPassword("");
     setNewPassword("");
+    setSelectedFile(null);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setPreview(URL.createObjectURL(file));
+    }
   };
 
   const handleDeleteUser = async () => {
@@ -215,7 +234,7 @@ const Profile = () => {
                           <div className="relative">
                             <Avatar className="w-20 h-20">
                               <AvatarImage
-                                src={user?.profilePicture}
+                                src={preview}
                                 alt="Profile picture"
                                 className="w-full h-full object-cover"
                               />
@@ -233,6 +252,7 @@ const Profile = () => {
                                 type="file"
                                 accept="image/*"
                                 className="hidden"
+                                onChange={handleFileChange}
                               />
                             </label>
                           </div>

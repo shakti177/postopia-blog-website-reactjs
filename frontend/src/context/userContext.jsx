@@ -45,7 +45,6 @@ export const UserProvider = ({ children }) => {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const response = await uploadAvatar(accessToken, formData);
-      console.log(response);
       if (response.data) {
         setUser((user) => ({
           ...user,
