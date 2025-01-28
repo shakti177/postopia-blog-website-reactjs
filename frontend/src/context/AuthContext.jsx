@@ -36,15 +36,17 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const register = async (userData) => {
+    setLoading(true);
+    setError(null);
     try {
-      setLoading(true);
       const response = await registerUser(userData);
+      setUser(response.data);
       localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      setUser(response.data);
       setError(null);
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.message || "Failed to register");
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     setLoading(true);
+    setError(null);
     try {
       const response = await loginUser(credentials);
       setUser(response.data);

@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
 const Register = () => {
@@ -20,15 +20,11 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { register, error, loading } = useAuth();
-  const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await register({ name, email, password });
-      if (!error) {
-        Navigate("/");
-      }
     } catch (error) {
       console.error(error);
     }
@@ -90,6 +86,9 @@ const Register = () => {
                         <Eye className="h-5 w-5" />
                       )}
                     </button>
+                  </div>
+                  <div>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                   </div>
                 </div>
               </div>
