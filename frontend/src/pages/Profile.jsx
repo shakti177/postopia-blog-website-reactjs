@@ -301,9 +301,9 @@ const Profile = () => {
                                   Are you absolutely sure?
                                 </AlertDialogTitle>
                                 <AlertDialogDescription>
-                                  This action cannot be undone. This will
-                                  permanently delete your account and remove
-                                  your data from our servers.
+                                  Are you sure you want to update your profile?
+                                  This action will save the changes you have
+                                  made.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter>
