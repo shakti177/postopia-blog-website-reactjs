@@ -158,7 +158,7 @@ const Profile = () => {
           {/* Blog Section Ends */}
 
           {/* User Profile */}
-          <div className="basis-[20%]">
+          <div className="basis-[20%] md:sticky top-28 h-full">
             {loading ? (
               <div className="flex flex-col items-center justify-center md:items-start md:border-l md:px-10">
                 <Skeleton className="size-32 rounded-full" />
@@ -210,7 +210,7 @@ const Profile = () => {
                           Make changes to your profile here.
                         </DialogDescription>
                       </DialogHeader>
-                      <form onSubmit={handleSubmit} className="space-y-4">
+                      <form className="space-y-4">
                         <div className="flex items-center space-x-4">
                           <div className="relative">
                             <Avatar className="w-20 h-20">
@@ -286,13 +286,37 @@ const Profile = () => {
                           />
                         </div>
                         <DialogFooter>
-                          <Button
-                            type="submit"
-                            className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700"
-                            disabled={loading || !hasChanges()}
-                          >
-                            Save changes
-                          </Button>
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700"
+                                disabled={loading || !hasChanges()}
+                              >
+                                Save Changes
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>
+                                  Are you absolutely sure?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. This will
+                                  permanently delete your account and remove
+                                  your data from our servers.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={handleSubmit}
+                                  className="bg-blue-800 hover:bg-blue-700"
+                                >
+                                  Continue
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </DialogFooter>
                       </form>
                     </DialogContent>
