@@ -83,6 +83,15 @@ const Footerbar = () => {
             © {getCurrentYear()} Postopia. All Rights Reserved | Designed and
             developed by{" "}
             <a
+              href="https://github.com/kritikhedau"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "#1d40af", textDecoration: "none" }}
+            >
+              Kritik Hedau
+            </a>{" "}
+            and{" "}
+            <a
               href="https://github.com/shakti177"
               target="_blank"
               rel="noreferrer"
