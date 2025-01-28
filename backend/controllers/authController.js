@@ -18,12 +18,16 @@ module.exports.registerUser = async (req, res) => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: "Invalid email format." });
+      return res.status(400).json({
+        status: "error",
+        message: "Invalid email format.",
+      });
     }
 
     if (password.trim().length < 6) {
       return res.status(400).json({
-        error:
+        status: "error",
+        message:
           "Password must be at least 6 characters long (excluding spaces).",
       });
     }
