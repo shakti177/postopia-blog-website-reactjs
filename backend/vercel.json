@@ -11,10 +11,5 @@
         "src": "/(.*)",
         "dest": "/app.js"
       }
-    ],
-    "env": {
-      "MONGODB_URI": "@mongodb_uri",
-      "JWT_KEY": "@jwt_key",
-      "REFRESH_JWT_KEY": "@refresh_jwt_key"
-    }
+    ]
   }
