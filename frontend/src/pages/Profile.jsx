@@ -49,16 +49,13 @@ const Profile = () => {
       };
       fetchData();
     }
-  }, [user?.id]);
-
-  useEffect(() => {
     if (user?.name) {
       setName(user.name);
     }
     if (user?.profilePicture) {
       setPreview(user.profilePicture);
     }
-  }, [user?.name, user?.profilePicture]);
+  }, [user?.id, user?.name, user?.profilePicture]);
 
   const hasChanges = () => {
     return name !== user?.name || oldPassword || newPassword || selectedFile;
@@ -139,7 +136,10 @@ const Profile = () => {
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-3">
                       <Avatar className="size-6">
-                        <AvatarImage src={user?.profilePicture} />
+                        <AvatarImage
+                          src={user?.profilePicture}
+                          className="object-cover w-full h-full"
+                        />
                         <AvatarFallback>
                           {getNameInitials(user?.name)}
                         </AvatarFallback>
