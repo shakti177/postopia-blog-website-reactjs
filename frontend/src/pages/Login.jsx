@@ -91,7 +91,7 @@ const Login = () => {
                 disabled={loading}
               >
                 {loading ? (
-                  <div class="size-6 rounded-full border-4 border-gray-300 border-r-blue-700 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
+                  <div class="size-6 rounded-full border-4 border-gray-300 border-r-blue-600 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
                 ) : (
                   <p>Sign In</p>
                 )}

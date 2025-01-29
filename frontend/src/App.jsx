@@ -15,7 +15,6 @@ import PublicRoute from "./routes/PublicRoute";
 const App = () => {
   return (
     <>
-      <ScrollToTop />
       <BrowserRouter>
         <Navbar />
         {/* <Routes>
@@ -41,6 +40,7 @@ const App = () => {
         </Routes>
         <Footerbar />
       </BrowserRouter>
+      <ScrollToTop />
     </>
   );
 };
