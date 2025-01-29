@@ -90,7 +90,11 @@ const Login = () => {
                 className="w-full mt-6 bg-blue-800 hover:bg-blue-700"
                 disabled={loading}
               >
-                Sign In
+                {loading ? (
+                  <div class="size-6 rounded-full border-4 border-gray-300 border-r-blue-700 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
+                ) : (
+                  <p>Sign In</p>
+                )}
               </Button>
             </form>
           </CardContent>
