@@ -111,7 +111,7 @@ const Navbar = () => {
             <Link
               to="/login"
               onClick={ScrollToTop}
-              className="text-lg font-semibold text-primary-500 dark:text-primary-400"
+              className="text-lg text-primary-500 dark:text-primary-400"
             >
               Login
             </Link>
