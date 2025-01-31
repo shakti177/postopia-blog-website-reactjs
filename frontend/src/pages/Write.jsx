@@ -60,20 +60,6 @@ const Write = () => {
                   className="h-72 mb-12 mt-2"
                   onChange={(value) => setContent(value)}
                 />
-                <button
-                  type="submit"
-                  style={{
-                    marginTop: "20px",
-                    padding: "10px 20px",
-                    backgroundColor: "#6c63ff",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Submit
-                </button>
               </div>
             </div>
             <div className="basis-[30%] space-y-3">
@@ -124,6 +110,7 @@ const Write = () => {
                   </Label>
                 </div>
               </div>
+              <Button className="w-full">Publish</Button>
             </div>
           </div>
         </form>
