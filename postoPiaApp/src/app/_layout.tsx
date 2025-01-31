@@ -28,7 +28,7 @@ const CombinedDefaultTheme = merge(LightTheme, customLightTheme);
 const CombinedDarkTheme = merge(DarkTheme, customDarkTheme);
 
 
-const _layout = () => {
+const _layout = (): JSX.Element => {
 
   // const colorScheme = useColorScheme();
   const { colorScheme } = useTheme();
