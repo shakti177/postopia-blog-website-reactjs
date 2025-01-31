@@ -13,9 +13,6 @@ export default function useTheme() {
     if (globalColorScheme && globalColorScheme !== localColorScheme) {
       setLocalColorScheme(globalColorScheme)
     }
-
-
-
   }, [globalColorScheme])
 
   const toggleTheme = () => {
