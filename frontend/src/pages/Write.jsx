@@ -20,17 +20,29 @@ const Write = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
 
+  console.log(content);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline"],
+      ["link"],
+      ["blockquote"],
+    ],
   };
 
   return (
     <>
       <div className="container mx-auto px-5 md:px-10 py-7">
+        <div dangerouslySetInnerHTML={{ __html: content }} />
         <h1 className="text-xl text-gray-900 dark:text-white mb-7 md:mb-5 border-b pb-4">
           Create New Blog
         </h1>
-
         <form>
           <div className="flex gap-14">
             <div className="basis-[70%]">
@@ -56,9 +68,10 @@ const Write = () => {
                 </Label>
                 <ReactQuill
                   theme="snow"
+                  modules={modules}
                   placeholder="Write something..."
-                  className="h-72 mb-12 mt-2"
-                  onChange={(value) => setContent(value)}
+                  className="h-96 mb-12 mt-2"
+                  onChange={setContent}
                 />
               </div>
             </div>
