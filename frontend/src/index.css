@@ -65,6 +65,7 @@
     --chart-5: 340 75% 55%;
   }
 }
+
 @layer base {
   * {
     @apply border-border;
@@ -72,6 +73,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.dark .ql-fill {
+  fill: white !important;
+}
+
+.dark .ql-stroke {
+  stroke: white !important;
 }
 
 .ql-editor h1 {
@@ -100,6 +109,12 @@
   font-style: italic; /* Italic text */
   color: #1f2937; /* Dark text color */
   margin-bottom: 1rem; /* Add space below the blockquote */
+}
+
+.dark .ql-editor blockquote {
+  border-left-color: #93c5fd; /* Blue left border */
+  background-color: #1f2937; /* Dark background */
+  color: #f0f4f8; /* Light text color */
 }
 
 .ql-editor ul {
