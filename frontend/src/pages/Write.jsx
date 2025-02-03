@@ -11,20 +11,44 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePost } from "@/context/postContext";
 import { ImagePlus } from "lucide-react";
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const Write = () => {
-  const [content, setContent] = useState("");
+  const { createPost, loading } = usePost();
+
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
 
-  console.log(content);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnail(file);
+      setImage(URL.createObjectURL(file));
+    }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("category", category);
+
+    if (thumbnail) {
+      formData.append("thumbnail", thumbnail);
+    }
+    try {
+      await createPost(formData);
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
   };
 
   const modules = {
@@ -51,8 +75,8 @@ const Write = () => {
           </TabsList>
 
           <TabsContent value="write" className="space-y-6">
-            <form>
-              <div className="flex gap-14">
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <div className="flex flex-col md:flex-row gap-14">
                 <div className="basis-[70%]">
                   <Label
                     htmlFor="title"
@@ -66,6 +90,7 @@ const Write = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="mt-2"
+                    required
                   />
                   <div className="mt-5">
                     <Label
@@ -84,7 +109,7 @@ const Write = () => {
                     />
                   </div>
                 </div>
-                <div className="basis-[30%] space-y-3">
+                <div className="basis-[30%] space-y-6">
                   <div>
                     <Label
                       htmlFor="category"
@@ -92,17 +117,18 @@ const Write = () => {
                     >
                       Category
                     </Label>
-                    <Select>
+                    <Select onValueChange={setCategory}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a category" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Categories</SelectLabel>
-                          <SelectItem value="react">React</SelectItem>
-                          <SelectItem value="nextjs">Next.js</SelectItem>
-                          <SelectItem value="typescript">TypeScript</SelectItem>
-                          <SelectItem value="javascript">JavaScript</SelectItem>
+                          <SelectItem value="AI">AI</SelectItem>
+                          <SelectItem value="Coding">Coding</SelectItem>
+                          <SelectItem value="Fashion">Fashion</SelectItem>
+                          <SelectItem value="Food">Food</SelectItem>
+                          <SelectItem value="Technology">Technology</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -116,23 +142,47 @@ const Write = () => {
                         htmlFor="cover-image"
                         className="flex cursor-pointer flex-col items-center"
                       >
-                        <ImagePlus className="h-12 w-12 text-gray-400" />
-                        <span className="mt-2 text-sm font-medium text-gray-700">
-                          Upload Cover Image
-                        </span>
-                        <span className="mt-1 text-xs text-gray-500">
-                          PNG, JPG, GIF up to 10MB
-                        </span>
+                        {image ? (
+                          <div>
+                            <img
+                              src={image}
+                              alt="Cover Preview"
+                              className="h-40 w-full object-cover rounded-lg"
+                            />
+                          </div>
+                        ) : (
+                          <>
+                            <ImagePlus className="h-12 w-12 text-gray-400" />
+                            <span className="mt-2 text-sm font-medium text-gray-700">
+                              Upload Cover Image
+                            </span>
+                            <span className="mt-1 text-xs text-gray-500">
+                              PNG, JPG, GIF up to 10MB
+                            </span>
+                          </>
+                        )}
                         <input
                           id="cover-image"
                           type="file"
                           className="hidden"
                           accept="image/*"
+                          onChange={handleImageChange}
                         />
                       </Label>
                     </div>
                   </div>
-                  <Button className="w-full">Publish</Button>
+
+                  <Button
+                    type="submit"
+                    className="w-full mt-6 bg-blue-800 hover:bg-blue-700"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <div className="size-6 rounded-full border-4 border-gray-300 border-r-blue-600 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
+                    ) : (
+                      <p>Publish</p>
+                    )}
+                  </Button>
                 </div>
               </div>
             </form>

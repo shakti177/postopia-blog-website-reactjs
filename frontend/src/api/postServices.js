@@ -1,10 +1,11 @@
 import API from "./axios";
 
-export const apiCreatePost = async (postData, accessToken) => {
+export const apiCreatePost = async (formData, accessToken) => {
   try {
-    const response = await API.post("/posts/create", postData, {
+    const response = await API.post("/posts/create", formData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "multipart/form-data",
       },
     });
     return response.data;

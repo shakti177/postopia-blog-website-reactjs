@@ -17,12 +17,12 @@ export const PostProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const createPost = async (postData) => {
+  const createPost = async (formData) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const response = await apiCreatePost(postData, accessToken);
+      const response = await apiCreatePost(formData, accessToken);
       setPosts([...posts, response.data]);
     } catch (error) {
       console.error(error);
