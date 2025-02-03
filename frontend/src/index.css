@@ -100,31 +100,43 @@
 }
 
 .ql-editor blockquote {
-  border-left: 4px solid #3b82f6; /* Blue left border */
-  padding-left: 1.5rem !important; /* Left padding */
-  padding-right: 1rem; /* Right padding */
-  padding-top: 0.5rem; /* Top padding */
-  padding-bottom: 0.5rem; /* Bottom padding */
-  background-color: #f0f4f8; /* Light background */
-  font-style: italic; /* Italic text */
-  color: #1f2937; /* Dark text color */
-  margin-bottom: 1rem; /* Add space below the blockquote */
+  border-left: 4px solid #3b82f6 !important;
+  padding-left: 1rem !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background-color: #f0f4f8;
+  font-style: italic;
+  color: #1f2937;
+  margin-bottom: 1rem;
 }
 
 .dark .ql-editor blockquote {
-  border-left-color: #93c5fd; /* Blue left border */
-  background-color: #1f2937; /* Dark background */
-  color: #f0f4f8; /* Light text color */
+  border-left-color: #93c5fd;
+  background-color: #171717;
+  color: #f0f4f8;
 }
 
 .ql-editor ul {
-  @apply list-disc list-inside ml-4;
+  list-style-type: disc;
+  margin-left: -30px !important;
 }
 
 .ql-editor ol {
-  @apply list-decimal list-inside ml-4;
+  list-style-type: decimal;
+  margin-left: -30px !important;
 }
 
 .ql-editor li {
-  @apply mb-1;
+  margin-bottom: 0.25rem;
+}
+
+.ql-editor pre {
+  background-color: #171717;
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  padding: 1rem !important;
+  overflow-x: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
