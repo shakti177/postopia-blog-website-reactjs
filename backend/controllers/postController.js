@@ -41,9 +41,16 @@ module.exports.createPost = async (req, res) => {
     });
 
     post.author = user._id;
-    post.save();
+    await post.save();
     user.posts.push(post);
-    user.save();
+    await user.save();
+
+    if (req.file) {
+      const base64Image = req.file.buffer.toString("base64");
+      post.thumbnail = `data:${req.file.mimetype};base64,${base64Image}`;
+      await post.save();
+    }
+
     res.status(201).json({
       status: "success",
       message: "Post created successfully!",

@@ -15,7 +15,7 @@ const {
 
 router.get("/", allPost);
 
-router.post("/create", isLoggedIn, createPost);
+router.post("/create", isLoggedIn, upload.single("thumbnail"), createPost);
 
 router.patch("/update/", isLoggedIn, updatePost);
 
