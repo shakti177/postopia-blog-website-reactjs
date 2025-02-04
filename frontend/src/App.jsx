@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Write from "./pages/Write";
-import PrivateRoute from "./routes/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
@@ -21,11 +20,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/write" element={<Write />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
+          <Route path="/write" element={<Write />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footerbar />
