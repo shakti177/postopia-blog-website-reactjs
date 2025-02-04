@@ -18,23 +18,13 @@ const App = () => {
     <>
       <BrowserRouter>
         <Navbar />
-        {/* <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<PublicRoute element={Login} />} />
-          <Route
-            path="/register"
-            element={<PublicRoute element={Register} />}
-          />
-          <Route path="/write" element={<Write />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<PublicRoute element={<Login />} />} />
+          <Route
+            path="/register"
+            element={<PublicRoute element={<Register />} />}
+          />
           <Route element={<PrivateRoute />}>
             <Route path="/write" element={<Write />} />
             <Route path="/profile" element={<Profile />} />
