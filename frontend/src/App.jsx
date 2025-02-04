@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import Write from "./pages/Write";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Write />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footerbar />

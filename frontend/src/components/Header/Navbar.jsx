@@ -88,7 +88,11 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  <Link to="/dashboard">
+                    <DropdownMenuItem onClick={ScrollToTop}>
+                      Dashboard
+                    </DropdownMenuItem>
+                  </Link>
                   <Link to="/profile">
                     <DropdownMenuItem onClick={ScrollToTop}>
                       Profile
