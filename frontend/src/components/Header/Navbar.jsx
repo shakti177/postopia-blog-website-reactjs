@@ -29,13 +29,6 @@ const Navbar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  const handleLogout = async () => {
-    await logout();
-    if (!loading) {
-      navigate("/login");
-    }
-  };
-
   const ScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -109,7 +102,11 @@ const Navbar = () => {
                   </Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem
+                  onClick={() => {
+                    logout();
+                  }}
+                >
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
