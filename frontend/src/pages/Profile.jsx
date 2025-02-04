@@ -414,7 +414,7 @@ const Profile = () => {
                           onClick={handleDeleteUser}
                           className="bg-blue-800 hover:bg-blue-700"
                         >
-                          Continue
+                          Delete
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
