@@ -117,7 +117,7 @@ const Write = () => {
                     >
                       Category
                     </Label>
-                    <Select onValueChange={setCategory}>
+                    <Select onValueChange={setCategory} required>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a category" />
                       </SelectTrigger>
