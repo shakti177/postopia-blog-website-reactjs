@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
 const Write = () => {
   const { createPost, loading } = usePost();
@@ -26,6 +27,8 @@ const Write = () => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -47,6 +50,9 @@ const Write = () => {
     }
     try {
       await createPost(formData);
+      if (!loading) {
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.error("Error creating post:", error);
     }

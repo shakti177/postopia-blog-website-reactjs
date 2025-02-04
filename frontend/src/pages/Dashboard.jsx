@@ -105,7 +105,7 @@ const Dashboard = () => {
               {posts.map((post) => (
                 <div
                   key={post._id}
-                  className="flex items-center justify-between gap-3 md:gap-8 p-5 bg-gray-100 dark:bg-neutral-800 rounded-lg"
+                  className="flex items-center justify-between gap-3 md:gap-8 p-5 bg-gray-100 dark:bg-neutral-900 rounded-lg"
                 >
                   <div className="w-20 h-20 md:w-32 md:h-32 overflow-hidden rounded-lg">
                     <img
