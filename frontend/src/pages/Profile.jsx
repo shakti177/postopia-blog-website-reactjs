@@ -154,7 +154,11 @@ const Profile = () => {
                       {post.title}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
-                      {post.content || "No description available."}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: post.content || "No description available.",
+                        }}
+                      />
                     </p>
                     <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
                       {post.category}
