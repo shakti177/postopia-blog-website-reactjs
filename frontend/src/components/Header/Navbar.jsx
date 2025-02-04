@@ -1,7 +1,7 @@
 import React from "react";
 import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import {
   DropdownMenu,
@@ -23,8 +23,17 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const { user, loading, logout } = useAuth();
 
+  const navigate = useNavigate();
+
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    if (!loading) {
+      navigate("/login");
+    }
   };
 
   const ScrollToTop = () => {
@@ -100,11 +109,7 @@ const Navbar = () => {
                   </Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => {
-                    logout();
-                  }}
-                >
+                <DropdownMenuItem onClick={handleLogout}>
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
