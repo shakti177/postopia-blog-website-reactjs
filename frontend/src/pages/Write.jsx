@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePost } from "@/context/postContext";
 import { ImagePlus } from "lucide-react";
 import React, { useState } from "react";
+import { X } from "lucide-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -143,7 +144,16 @@ const Write = () => {
                         className="flex cursor-pointer flex-col items-center"
                       >
                         {image ? (
-                          <div>
+                          <div className="relative h-40 w-full rounded-lg overflow-hidden">
+                            <button
+                              onClick={() => {
+                                setImage(null);
+                                setThumbnail(null);
+                              }}
+                              className="absolute top-2 right-2 bg-white rounded-full p-1"
+                            >
+                              <X className="h-6 w-6 text-gray-700 dark:text-white" />
+                            </button>
                             <img
                               src={image}
                               alt="Cover Preview"
@@ -198,9 +208,9 @@ const Write = () => {
                 />
               </div>
             ) : (
-              <div className="text-gray-700 dark:text-white text-lg">
+              <p className="text-gray-500 dark:text-gray-300 text-center rounded-3xl bg-gray-100 dark:bg-neutral-900 p-4">
                 No content to preview
-              </div>
+              </p>
             )}
           </TabsContent>
         </Tabs>
