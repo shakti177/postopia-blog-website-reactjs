@@ -10,7 +10,6 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Write from "./pages/Write";
 import PrivateRoute from "./routes/PrivateRoute";
-import PublicRoute from "./routes/PublicRoute";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
@@ -20,11 +19,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<PublicRoute element={<Login />} />} />
-          <Route
-            path="/register"
-            element={<PublicRoute element={<Register />} />}
-          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path="/write" element={<Write />} />
             <Route path="/profile" element={<Profile />} />
