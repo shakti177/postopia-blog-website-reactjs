@@ -35,7 +35,7 @@ export const apiFetchPost = async (postId) => {
 export const apiUpdatePost = async (postId, postData, accessToken) => {
   try {
     const response = await API.patch(
-      `/posts/update/postId=${postId}`,
+      `/posts/update/?postId=${postId}`,
       postData,
       {
         headers: {

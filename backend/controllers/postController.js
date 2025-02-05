@@ -93,6 +93,12 @@ module.exports.updatePost = async (req, res) => {
       if (content) post.content = content;
       if (category) post.category = category;
 
+      if (req.file) {
+        const base64Image = req.file.buffer.toString("base64");
+        post.thumbnail = `data:${req.file.mimetype};base64,${base64Image}`;
+        await post.save();
+      }
+
       await post.save();
 
       res.status(200).json({
