@@ -36,7 +36,7 @@ export const PostProvider = ({ children }) => {
     setError(null);
     try {
       const response = await apiFetchPosts();
-      setPosts(response.data);
+      setPosts(response);
     } catch (error) {
       console.error(error);
     } finally {
