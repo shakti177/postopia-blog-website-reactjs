@@ -44,7 +44,7 @@ const TopPicks = () => {
                 </h2>
                 <div className="flex items-center space-x-4">
                   <Avatar className="h-14 w-14 border-2 border-neutral-400">
-                    <AvatarImage src="https://pbs.twimg.com/profile_images/1612332480685838337/DtMNGDSQ_400x400.jpg" />
+                    <AvatarImage src={post.authorPicture} />
                     <AvatarFallback>
                       {getNameInitials(post.authorName)}
                     </AvatarFallback>
