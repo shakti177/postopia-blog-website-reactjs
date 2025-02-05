@@ -40,6 +40,7 @@ export const apiUpdatePost = async (postId, postData, accessToken) => {
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "multipart/form-data",
         },
       }
     );
@@ -65,23 +66,6 @@ export const apiDeletePost = async (postId, accessToken) => {
 export const apiFetchPostByCategory = async (category) => {
   try {
     const response = await API.get(`/posts/category/?category=${category}`);
-    return response.data;
-  } catch (error) {
-    return error.response.data;
-  }
-};
-
-export const apiPostThumbnail = async (thumbnailData, postID, accessToken) => {
-  try {
-    const response = await API.post(
-      `/posts/postThumbnail/?postID=${postID}`,
-      thumbnailData,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
     return response.data;
   } catch (error) {
     return error.response.data;

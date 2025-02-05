@@ -6,7 +6,6 @@ import {
   apiFetchPostByCategory,
   apiFetchPostByUser,
   apiFetchPosts,
-  apiPostThumbnail,
   apiUpdatePost,
 } from "../api/postServices";
 
@@ -58,15 +57,15 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const updatePost = async (postId, postData) => {
+  const updatePost = async (postId, formData) => {
     setLoading(true);
     setError(null);
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const response = await apiUpdatePost(postId, postData, accessToken);
+      const response = await apiUpdatePost(postId, formData, accessToken);
       setPosts(
         posts.map((post) =>
-          post._id === postId ? { ...post, ...response.data } : post
+          post._id === postId ? { ...post, ...response } : post
         )
       );
     } catch (error) {
@@ -103,28 +102,6 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const postThumbnail = async (thumbnailData, postId) => {
-    setLoading(true);
-    setError(null);
-    const accessToken = localStorage.getItem("accessToken");
-    try {
-      const response = await apiPostThumbnail(
-        thumbnailData,
-        postId,
-        accessToken
-      );
-      setPosts(
-        posts.map((post) =>
-          post._id === postId ? { ...post, ...response.data } : post
-        )
-      );
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const fetchByUser = async (userId) => {
     setLoading(true);
     setError(null);
@@ -151,7 +128,6 @@ export const PostProvider = ({ children }) => {
         updatePost,
         deletePost,
         fetchByCategory,
-        postThumbnail,
         fetchByUser,
       }}
     >
