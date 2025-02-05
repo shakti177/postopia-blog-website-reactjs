@@ -41,6 +41,9 @@ module.exports.createPost = async (req, res) => {
     });
 
     post.author = user._id;
+    post.authorName = user.name;
+    post.authorPicture = user.profilePicture;
+
     await post.save();
     user.posts.push(post);
     await user.save();
