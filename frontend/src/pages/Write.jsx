@@ -158,7 +158,7 @@ const Write = () => {
                               }}
                               className="absolute top-2 right-2 bg-white rounded-full p-1"
                             >
-                              <X className="h-6 w-6 text-gray-700 dark:text-white" />
+                              <X className="h-6 w-6 text-gray-700" />
                             </button>
                             <img
                               src={image}
