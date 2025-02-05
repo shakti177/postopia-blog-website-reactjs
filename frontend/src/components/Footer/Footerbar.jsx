@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "../../context/ThemeProvider";
 import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
+import { usePost } from "@/context/postContext";
+import { formatDate } from "@/utils/dataUtil";
 
 const Footerbar = () => {
   const { theme } = useTheme();
+  const { posts, fetchPosts } = usePost();
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   const getCurrentYear = () => new Date().getFullYear();
 
@@ -25,30 +32,16 @@ const Footerbar = () => {
           <div>
             <h2 className="text-xl font-bold">Recent Posts</h2>
             <ul className="py-2">
-              <li className="py-1">
-                <a href="#">
-                  <p>3 New Outfit Formulas To Add To Your Capsule Wardrobe</p>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    February 27, 2021
-                  </span>
-                </a>
-              </li>
-              <li className="py-1">
-                <a href="#">
-                  <p>Blog Guide: How to Start a Personal Blog on WordPress</p>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    February 27, 2021
-                  </span>
-                </a>
-              </li>
-              <li className="py-1">
-                <a href="#">
-                  <p>The technical setup when starting a personal blog</p>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    February 27, 2021
-                  </span>
-                </a>
-              </li>
+              {posts.slice(0, 3).map((post, index) => (
+                <li className="py-1" key={index}>
+                  <a href="#">
+                    <p className="line-clamp-2">{post.title}</p>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {formatDate(post.createdAt)}
+                    </span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
