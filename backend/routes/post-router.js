@@ -7,7 +7,6 @@ const {
   createPost,
   updatePost,
   deletePost,
-  postThumbnail,
   allPost,
   postByCategory,
   postByAuthor,
@@ -17,7 +16,7 @@ router.get("/", allPost);
 
 router.post("/create", isLoggedIn, upload.single("thumbnail"), createPost);
 
-router.patch("/update/", isLoggedIn, upload.single("thumbnail"), updatePost);
+router.patch("/update", isLoggedIn, upload.single("thumbnail"), updatePost);
 
 router.delete("/delete", isLoggedIn, deletePost);
 
