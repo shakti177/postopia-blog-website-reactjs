@@ -17,19 +17,12 @@ router.get("/", allPost);
 
 router.post("/create", isLoggedIn, upload.single("thumbnail"), createPost);
 
-router.patch("/update/", isLoggedIn, updatePost);
+router.patch("/update/", isLoggedIn, upload.single("thumbnail"), updatePost);
 
 router.delete("/delete", isLoggedIn, deletePost);
 
 router.get("/category", postByCategory);
 
 router.get("/author", postByAuthor);
-
-router.post(
-  "/postThumbnail",
-  isLoggedIn,
-  upload.single("thumbnail"),
-  postThumbnail
-);
 
 module.exports = router;

@@ -167,48 +167,6 @@ module.exports.deletePost = async (req, res) => {
   }
 };
 
-module.exports.postThumbnail = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: "No file uploaded" });
-    }
-
-    const base64Image = req.file.buffer.toString("base64");
-
-    const { postId } = req.query;
-
-    if (!postId) {
-      return res.status(400).json({
-        status: "error",
-        message: "postId query parameter is required!",
-      });
-    }
-
-    const post = await postModel.findById(postId);
-
-    if (!post) {
-      return res.status(404).json({
-        status: "error",
-        message: "Post not found!",
-      });
-    }
-
-    post.thumbnail = `data:${req.file.mimetype};base64,${base64Image}`;
-    await post.save();
-
-    res.status(200).json({
-      status: "success",
-      message: "Thumbnail uploaded successfully!",
-      data: post.thumbnail,
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "error",
-      message: "Internal server error!",
-    });
-  }
-};
-
 module.exports.postByCategory = async (req, res) => {
   const { category } = req.query;
 
