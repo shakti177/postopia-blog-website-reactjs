@@ -84,6 +84,14 @@ const EditBlog = () => {
     ],
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-[80vh]">
+        <div className="size-14 rounded-full border-8 border-gray-300 border-r-blue-800 dark:border-neutral-200 dark:border-r-neutral-800 animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-5 md:px-10 py-7">
       <h1 className="text-xl text-gray-900 dark:text-white mb-7 md:mb-5 border-b pb-4">
@@ -172,7 +180,7 @@ const EditBlog = () => {
                             }}
                             className="absolute top-2 right-2 bg-white rounded-full p-1"
                           >
-                            <X className="h-6 w-6 text-gray-700 dark:text-white" />
+                            <X className="h-6 w-6 text-gray-700" />
                           </button>
                           <img
                             src={image}
