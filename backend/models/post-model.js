@@ -9,6 +9,14 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    authorName: {
+      type: mongoose.Schema.Types.String,
+      ref: "User",
+    },
+    authorPicture: {
+      type: mongoose.Schema.Types.String,
+      ref: "User",
+    },
     thumbnail: String,
   },
   { timestamps: true }
