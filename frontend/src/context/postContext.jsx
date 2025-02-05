@@ -13,9 +13,10 @@ const postContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState(null);
+  const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [post, setPost] = useState(null);
 
   const createPost = async (formData) => {
     setLoading(true);
@@ -107,7 +108,7 @@ export const PostProvider = ({ children }) => {
     setError(null);
     try {
       const response = await apiFetchPostByUser(userId);
-      setPosts(response);
+      setUserPosts(response);
     } catch (error) {
       console.error(error);
     } finally {
@@ -120,6 +121,7 @@ export const PostProvider = ({ children }) => {
       value={{
         posts,
         post,
+        userPosts,
         loading,
         error,
         createPost,

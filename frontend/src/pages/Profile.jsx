@@ -33,7 +33,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Profile = () => {
   const { user, loading } = useAuth();
-  const { posts, fetchByUser, loading: postLoading } = usePost();
+  const { userPosts, fetchByUser, loading: postLoading } = usePost();
   const { updateUserProfile, uploadUserAvatar, deleteUserProfile } = useUser();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(user?.name);
@@ -129,8 +129,8 @@ const Profile = () => {
                     <div className="w-20 h-20 md:w-32 md:h-32 bg-gray-200 dark:bg-neutral-800 rounded-lg"></div>
                   </div>
                 ))
-            ) : posts.length > 0 ? (
-              posts.map((post) => (
+            ) : userPosts.length > 0 ? (
+              userPosts.map((post) => (
                 <div
                   key={post._id}
                   className="border-b flex items-center space-x-4 pb-4 mb-4"
@@ -215,7 +215,7 @@ const Profile = () => {
                   </p>
                 </div>
                 <div className="flex items-center justify-between mt-4">
-                  <p>{posts.length} Blogs</p>
+                  <p>{userPosts.length} Blogs</p>
                 </div>
 
                 {/* Edit Profile Section */}
