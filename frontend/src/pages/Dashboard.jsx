@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Search, X, Trash2, FileEditIcon } from "lucide-react";
 import { usePost } from "@/context/postContext";
 import { useAuth } from "@/context/AuthContext";
+import { Link } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -128,7 +129,9 @@ const Dashboard = () => {
                       </p>
                     </div>
                     <div className="flex items-center gap-2 md:gap-6">
-                      <FileEditIcon />
+                      <Link to={`/editblog/${post._id}`}>
+                        <FileEditIcon />
+                      </Link>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Trash2 color="#ef4444" className="cursor-pointer" />

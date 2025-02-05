@@ -16,6 +16,7 @@ export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [post, setPost] = useState(null);
 
   const createPost = async (formData) => {
     setLoading(true);
@@ -49,7 +50,7 @@ export const PostProvider = ({ children }) => {
     setError(null);
     try {
       const response = await apiFetchPost(postId);
-      setPosts(response.data);
+      setPost(response);
     } catch (error) {
       console.error(error);
     } finally {
@@ -141,6 +142,7 @@ export const PostProvider = ({ children }) => {
     <postContext.Provider
       value={{
         posts,
+        post,
         loading,
         error,
         createPost,

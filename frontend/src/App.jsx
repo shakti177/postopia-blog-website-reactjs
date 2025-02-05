@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Write from "./pages/Write";
 import Dashboard from "./pages/Dashboard";
+import EditBlog from "./pages/EditBlog";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/editblog/:id" element={<EditBlog />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
