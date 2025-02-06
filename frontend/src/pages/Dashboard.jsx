@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [searchText, setSearchText] = useState("");
 
   const { user } = useAuth();
-  const { posts, fetchByUser, deletePost, loading } = usePost();
+  const { userPosts, fetchByUser, deletePost, loading } = usePost();
 
   useEffect(() => {
     if (user?.id) {
@@ -101,9 +101,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               ))
-          ) : posts.length > 0 ? (
+          ) : userPosts.length > 0 ? (
             <div className="flex flex-col gap-5 mt-5">
-              {posts.map((post) => (
+              {userPosts.map((post) => (
                 <div
                   key={post._id}
                   className="flex items-center justify-between gap-3 md:gap-8 p-5 bg-gray-100 dark:bg-neutral-900 rounded-lg"
