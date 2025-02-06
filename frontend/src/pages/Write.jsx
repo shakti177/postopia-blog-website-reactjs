@@ -65,7 +65,6 @@ const Write = () => {
       ["bold", "italic", "underline"],
       ["link"],
       ["blockquote"],
-      ["code-block"],
     ],
   };
 
