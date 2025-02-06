@@ -218,7 +218,7 @@ const EditBlog = () => {
                   {loading ? (
                     <div className="size-6 rounded-full border-4 border-gray-300 border-r-blue-600 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
                   ) : (
-                    <p>Edit Blog</p>
+                    <p>Update Blog</p>
                   )}
                 </Button>
               </div>
