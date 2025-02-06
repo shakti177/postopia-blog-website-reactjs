@@ -6,6 +6,7 @@ import { usePost } from "@/context/postContext";
 import { getNameInitials } from "@/utils/stringUtil";
 import { formatDate } from "@/utils/dataUtil";
 import { getFormattedTime } from "@/utils/timeUtil";
+import { Link } from "react-router-dom";
 
 const TopPicks = () => {
   const { posts, fetchPosts, loading } = usePost();
@@ -40,7 +41,7 @@ const TopPicks = () => {
               <div className="absolute inset-0 bg-black bg-opacity-70"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                 <h2 className="text-2xl font-bold text-white mb-4 line-clamp-3">
-                  {post.title}
+                  <Link to={`/blog/${post._id}`}> {post.title}</Link>
                 </h2>
                 <div className="flex items-center space-x-4">
                   <Avatar className="h-14 w-14 border-2 border-neutral-400">

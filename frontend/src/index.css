@@ -75,6 +75,10 @@
   }
 }
 
+.ql-editor {
+  padding: 0 !important;
+}
+
 .dark .ql-fill {
   fill: white !important;
 }
