@@ -47,8 +47,10 @@ const Blog = () => {
             />
           </div>
           <div className="space-y-4 border-b border-neutral-200 pb-4">
-            <h2 className="text-4xl font-bold leading-normal">{blog?.title}</h2>
-            <div className="flex items-center justify-between mt-4">
+            <h2 className="text-3xl md:text-4xl font-bold md:leading-normal">
+              {blog?.title}
+            </h2>
+            <div className="flex flex-col md:flex-row gap-7 justify-between mt-4">
               <div className="flex items-center gap-4">
                 <Avatar className="size-7 md:size-9">
                   <AvatarImage
