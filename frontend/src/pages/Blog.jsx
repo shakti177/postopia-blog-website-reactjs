@@ -15,7 +15,7 @@ const Blog = () => {
 
   useEffect(() => {
     const fetchBlogPost = async () => {
-      if (id) {
+      if (id && !post) {
         setIsBlogLoading(true);
         await fetchPost(id);
         setIsBlogLoading(false);
@@ -23,7 +23,7 @@ const Blog = () => {
     };
 
     fetchBlogPost();
-  }, [id]);
+  }, [id, post]);
 
   useEffect(() => {
     if (post) {
