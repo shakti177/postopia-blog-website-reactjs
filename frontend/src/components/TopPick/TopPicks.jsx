@@ -15,6 +15,13 @@ const TopPicks = () => {
     fetchPosts();
   }, []);
 
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="container mx-auto px-5 md:px-10 py-24">
       <h1 className="text-2xl md:text-3xl font-bold mb-6">
@@ -41,7 +48,10 @@ const TopPicks = () => {
               <div className="absolute inset-0 bg-black bg-opacity-70"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                 <h2 className="text-2xl font-bold text-white mb-4 line-clamp-3">
-                  <Link to={`/blog/${post._id}`}> {post.title}</Link>
+                  <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
+                    {" "}
+                    {post.title}
+                  </Link>
                 </h2>
                 <div className="flex items-center space-x-4">
                   <Avatar className="h-14 w-14 border-2 border-neutral-400">

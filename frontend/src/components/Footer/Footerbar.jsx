@@ -4,6 +4,7 @@ import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
 import { usePost } from "@/context/postContext";
 import { formatDate } from "@/utils/dataUtil";
+import { Link } from "react-router-dom";
 
 const Footerbar = () => {
   const { theme } = useTheme();
@@ -12,6 +13,13 @@ const Footerbar = () => {
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const getCurrentYear = () => new Date().getFullYear();
 
@@ -34,12 +42,12 @@ const Footerbar = () => {
             <ul className="py-2">
               {posts.slice(0, 3).map((post, index) => (
                 <li className="py-1" key={index}>
-                  <a href="#">
+                  <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
                     <p className="line-clamp-2">{post.title}</p>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {formatDate(post.createdAt)}
-                    </span>
-                  </a>
+                  </Link>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {formatDate(post.createdAt)}
+                  </span>
                 </li>
               ))}
             </ul>
