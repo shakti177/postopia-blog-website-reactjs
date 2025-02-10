@@ -12,7 +12,11 @@ const userSchema = new mongoose.Schema(
       },
     ],
     refreshTokens: [String],
-    profilePicture: String,
+    profilePicture: {
+      type: String,
+      default:
+        "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+    },
   },
   { timestamps: true }
 );

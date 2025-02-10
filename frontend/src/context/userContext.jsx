@@ -32,6 +32,7 @@ export const UserProvider = ({ children }) => {
       const response = await deleteUser(accessToken);
       setUser(null);
       localStorage.clear();
+      window.location.href = "/login";
     } catch (error) {
       console.error(error);
     } finally {
