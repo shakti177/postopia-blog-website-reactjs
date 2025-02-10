@@ -30,9 +30,9 @@ export const UserProvider = ({ children }) => {
     const accessToken = localStorage.getItem("accessToken");
     try {
       const response = await deleteUser(accessToken);
+      window.location.href = "/login";
       setUser(null);
       localStorage.clear();
-      window.location.href = "/login";
     } catch (error) {
       console.error(error);
     } finally {
