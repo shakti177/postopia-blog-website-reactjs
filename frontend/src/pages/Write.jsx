@@ -172,7 +172,7 @@ const Write = () => {
                               Upload Cover Image
                             </span>
                             <span className="mt-1 text-xs text-gray-500">
-                              PNG, JPG, GIF up to 10MB
+                              PNG, JPG, GIF up to 5MB
                             </span>
                           </>
                         )}
