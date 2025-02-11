@@ -117,9 +117,11 @@ const Dashboard = () => {
                   </div>
                   <div className="flex-1 flex flex-col md:flex-row justify-between gap-2 md:gap-10">
                     <div className="space-y-2">
-                      <h2 className="md:text-xl font-semibold text-gray-900 dark:text-white line-clamp-2 leading-5">
-                        {post.title}
-                      </h2>
+                      <Link to={`/blog/${post._id}`}>
+                        <h2 className="md:text-xl font-semibold text-gray-900 dark:text-white line-clamp-2 leading-5">
+                          {post.title}
+                        </h2>
+                      </Link>
                       <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
                         <div
                           dangerouslySetInnerHTML={{

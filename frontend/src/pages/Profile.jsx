@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { user, loading } = useAuth();
@@ -150,9 +151,11 @@ const Profile = () => {
                         {user?.name} • {formatDate(post?.createdAt)}
                       </p>
                     </div>
-                    <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3 line-clamp-2">
-                      {post.title}
-                    </h2>
+                    <Link to={`/blog/${post._id}`}>
+                      <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3 line-clamp-2">
+                        {post.title}
+                      </h2>
+                    </Link>
                     <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
                       <div
                         dangerouslySetInnerHTML={{

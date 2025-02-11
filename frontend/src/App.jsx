@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/editblog/:id" element={<EditBlog />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/blog/:id" element={<Blog />} /> */}
+          <Route path="/blog/:id" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footerbar />

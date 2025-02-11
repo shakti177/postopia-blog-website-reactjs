@@ -46,6 +46,8 @@ export const PostProvider = ({ children }) => {
   };
 
   const fetchPost = async (postId) => {
+    if (post && post._id === postId) return;
+
     setLoading(true);
     setError(null);
     try {

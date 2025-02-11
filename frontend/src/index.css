@@ -92,11 +92,15 @@
 }
 
 .ql-editor h2 {
-  @apply text-xl font-bold;
+  @apply text-[26px] font-bold;
 }
 
 .ql-editor a {
   @apply text-blue-600 underline;
+}
+
+.ql-editor p {
+  font-size: 20px;
 }
 
 .ql-editor blockquote {
@@ -119,13 +123,16 @@
 .ql-editor ul {
   list-style-type: disc;
   margin-left: -30px !important;
+  font-size: 20px;
 }
 
 .ql-editor ol {
   list-style-type: decimal;
   margin-left: -30px !important;
+  font-size: 20px;
 }
 
 .ql-editor li {
   margin-bottom: 0.25rem;
+  font-size: 20px;
 }
