@@ -93,6 +93,7 @@ const Blog = () => {
           className="ql-editor"
         />
       </div>
+
       {/* Share Section */}
       <div className="flex justify-end gap-2 mt-4 border-b pb-4">
         <p>Share On</p>
@@ -107,6 +108,7 @@ const Blog = () => {
           <Twitter size={24} className="fill-current" strokeWidth={0} />
         </a>
       </div>
+
       {/* Similar Blogs Section */}
       <div className="mt-9">
         <p className="text-2xl font-medium mb-6 border-b pb-4">Similar Blogs</p>
