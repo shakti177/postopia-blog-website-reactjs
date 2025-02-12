@@ -118,7 +118,7 @@ const Blog = () => {
               <div className="flex items-center justify-between gap-4 border-b border-neutral-200 pb-4">
                 <div className="basis-[80%] flex flex-col gap-3">
                   <div className="flex items-center gap-2">
-                    <Avatar className="size-4 md:size-6">
+                    <Avatar className="size-6">
                       <AvatarImage
                         src={relatedPost.author.profilePicture}
                         className="object-cover w-full h-full"
