@@ -56,7 +56,7 @@ const Blog = () => {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="space-y-4 border-b border-neutral-200 pb-4">
+        <div className="space-y-4 border-b pb-4">
           <h2 className="text-3xl md:text-4xl font-bold md:leading-normal">
             {post?.title}
           </h2>
@@ -85,7 +85,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
-      <div className="mt-9 border-b border-neutral-200 pb-4">
+      <div className="mt-9 border-b pb-4">
         <div
           dangerouslySetInnerHTML={{
             __html: post?.content || "No description available.",
@@ -94,7 +94,7 @@ const Blog = () => {
         />
       </div>
       {/* Share Section */}
-      <div className="flex justify-end gap-2 mt-4 border-b border-neutral-200 pb-4">
+      <div className="flex justify-end gap-2 mt-4 border-b pb-4">
         <p>Share On</p>
         <a
           href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
@@ -109,13 +109,11 @@ const Blog = () => {
       </div>
       {/* Similar Blogs Section */}
       <div className="mt-9">
-        <p className="text-2xl font-medium mb-6 border-b border-neutral-200 pb-4">
-          Similar Blogs
-        </p>
+        <p className="text-2xl font-medium mb-6 border-b pb-4">Similar Blogs</p>
         <div className="flex flex-col gap-4 mt-4">
           {randomPosts.map((relatedPost) => (
             <div key={relatedPost._id}>
-              <div className="flex items-center justify-between gap-4 border-b border-neutral-200 pb-4">
+              <div className="flex items-center justify-between gap-4 border-b pb-4">
                 <div className="basis-[80%] flex flex-col gap-3">
                   <div className="flex items-center gap-2">
                     <Avatar className="size-6">
