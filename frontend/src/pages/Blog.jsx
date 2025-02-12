@@ -62,7 +62,7 @@ const Blog = () => {
           </h2>
           <div className="flex flex-col md:flex-row gap-7 justify-between mt-4">
             <div className="flex items-center gap-4">
-              <Avatar className="size-7 md:size-9">
+              <Avatar className="size-7 md:size-12">
                 <AvatarImage
                   src={post?.author.profilePicture}
                   className="object-cover w-full h-full"
