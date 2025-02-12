@@ -8,14 +8,7 @@ const postSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-    },
-    authorName: {
-      type: mongoose.Schema.Types.String,
-      ref: "User",
-    },
-    authorPicture: {
-      type: mongoose.Schema.Types.String,
-      ref: "User",
+      required: true,
     },
     thumbnail: String,
   },

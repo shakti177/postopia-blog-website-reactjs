@@ -6,14 +6,19 @@ module.exports.allPost = async (req, res) => {
 
   try {
     if (postId) {
-      const post = await postModel.findById(postId);
+      const post = await postModel
+        .findById(postId)
+        .populate("author", "name profilePicture");
       if (post) {
         return res.json(post);
       } else {
         return res.status(404).json({ error: "Post not found" });
       }
     } else {
-      const posts = await postModel.find().sort({ createdAt: -1 });
+      const posts = await postModel
+        .find()
+        .populate("author", "name profilePicture")
+        .sort({ createdAt: -1 });
       res.json(posts);
     }
   } catch (error) {
@@ -38,13 +43,9 @@ module.exports.createPost = async (req, res) => {
       title,
       content,
       category,
+      author: user._id,
     });
 
-    post.author = user._id;
-    post.authorName = user.name;
-    post.authorPicture = user.profilePicture;
-
-    await post.save();
     user.posts.push(post);
     await user.save();
 
@@ -60,8 +61,6 @@ module.exports.createPost = async (req, res) => {
       data: post,
     });
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({
       status: "error",
       message: "Internal server error!",

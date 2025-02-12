@@ -11,6 +11,8 @@ const Blog = () => {
   const { id } = useParams();
   const { post, fetchPost, loading } = usePost();
 
+  console.log(post);
+
   useEffect(() => {
     if (id) {
       fetchPost(id);
@@ -38,17 +40,17 @@ const Blog = () => {
               <div className="flex items-center gap-4">
                 <Avatar className="size-7 md:size-9">
                   <AvatarImage
-                    src={post?.authorPicture}
+                    src={post?.author.profilePicture}
                     className="object-cover w-full h-full"
                   />
                   <AvatarFallback>
-                    {getNameInitials(post?.authorName)}
+                    {getNameInitials(post?.author.name)}
                   </AvatarFallback>
                 </Avatar>
 
                 <span className="text-sm">
                   <p>Published by</p>
-                  {post?.authorName}
+                  {post?.author.name}
                 </span>
               </div>
               <p className="flex items-center gap-1 text-sm text-neutral-500 dark:text-neutral-400">
