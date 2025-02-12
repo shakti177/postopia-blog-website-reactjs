@@ -206,7 +206,7 @@ const Write = () => {
           <TabsContent value="preview" className="space-y-6">
             {content || title ? (
               <div>
-                <h1 className="text-2xl font-bold mb-3 pl-4">{title}</h1>
+                <h1 className="text-2xl font-bold mb-3">{title}</h1>
                 <div
                   className="ql-editor"
                   dangerouslySetInnerHTML={{ __html: content }}
