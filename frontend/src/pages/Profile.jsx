@@ -101,6 +101,13 @@ const Profile = () => {
     await deleteUserProfile();
   };
 
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="bg-white dark:bg-black">
       <div className="container mx-auto px-5 md:px-10 py-4">
@@ -151,7 +158,7 @@ const Profile = () => {
                         {user?.name} • {formatDate(post?.createdAt)}
                       </p>
                     </div>
-                    <Link to={`/blog/${post._id}`}>
+                    <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
                       <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3 line-clamp-2">
                         {post.title}
                       </h2>

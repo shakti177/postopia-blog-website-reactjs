@@ -51,6 +51,13 @@ const Dashboard = () => {
     await deletePost(postId);
   };
 
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <div className="container mx-auto px-5 md:px-10 my-10">
@@ -117,7 +124,7 @@ const Dashboard = () => {
                   </div>
                   <div className="flex-1 flex flex-col md:flex-row justify-between gap-2 md:gap-10">
                     <div className="space-y-2">
-                      <Link to={`/blog/${post._id}`}>
+                      <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
                         <h2 className="md:text-xl font-semibold text-gray-900 dark:text-white line-clamp-2 leading-5">
                           {post.title}
                         </h2>
