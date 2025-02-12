@@ -3,7 +3,7 @@ import { usePost } from "@/context/postContext";
 import { formatDate } from "@/utils/dataUtil";
 import { getNameInitials } from "@/utils/stringUtil";
 import { getFormattedTime } from "@/utils/timeUtil";
-import { Clock9, Twitter, Linkedin } from "lucide-react";
+import { Clock9, Twitter } from "lucide-react";
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -38,6 +38,13 @@ const Blog = () => {
   };
 
   const randomPosts = getRandomPosts();
+
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="container mx-auto px-5 lg:px-32 py-10">
@@ -107,8 +114,8 @@ const Blog = () => {
         </p>
         <div className="flex flex-col gap-4 mt-4">
           {randomPosts.map((relatedPost) => (
-            <Link to={`/blog/${relatedPost._id}`} key={relatedPost._id}>
-              <div className="flex items-center gap-4 border-b border-neutral-200 pb-4">
+            <div key={relatedPost._id}>
+              <div className="flex items-center justify-between gap-4 border-b border-neutral-200 pb-4">
                 <div className="basis-[80%] flex flex-col gap-3">
                   <div className="flex items-center gap-2">
                     <Avatar className="size-4 md:size-6">
@@ -125,9 +132,11 @@ const Blog = () => {
                       {formatDate(relatedPost.createdAt)}
                     </span>
                   </div>
-                  <h2 className="text-xl font-medium line-clamp-2">
-                    {relatedPost.title}
-                  </h2>
+                  <Link to={`/blog/${relatedPost._id}`} onClick={ScrollToTop}>
+                    <h2 className="text-xl font-medium line-clamp-2">
+                      {relatedPost.title}
+                    </h2>
+                  </Link>
                   <div
                     dangerouslySetInnerHTML={{
                       __html:
@@ -142,14 +151,16 @@ const Blog = () => {
                   </div>
                 </div>
                 <div className="w-20 h-20 md:w-32 md:h-32 overflow-hidden rounded-lg">
-                  <img
-                    src={relatedPost.thumbnail}
-                    alt={relatedPost.title}
-                    className="w-full h-full object-cover rounded-lg"
-                  />
+                  <Link to={`/blog/${relatedPost._id}`} onClick={ScrollToTop}>
+                    <img
+                      src={relatedPost.thumbnail}
+                      alt={relatedPost.title}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </Link>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
