@@ -11,8 +11,6 @@ const Blog = () => {
   const { id } = useParams();
   const { post, fetchPost, loading } = usePost();
 
-  console.log(post);
-
   useEffect(() => {
     if (id) {
       fetchPost(id);
