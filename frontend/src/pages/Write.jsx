@@ -213,9 +213,11 @@ const Write = () => {
                 />
               </div>
             ) : (
-              <p className="text-gray-500 dark:text-gray-300 text-center rounded-3xl bg-gray-100 dark:bg-neutral-900 p-4">
-                No content to preview
-              </p>
+              <div className="flex items-center justify-center h-96">
+                <p className="w-full text-gray-500 dark:text-gray-300 text-center rounded-3xl bg-gray-100 dark:bg-neutral-900 p-4">
+                  No content to preview
+                </p>
+              </div>
             )}
           </TabsContent>
         </Tabs>
