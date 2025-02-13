@@ -134,7 +134,7 @@ const Blog = () => {
                   </div>
                   <div className="inline">
                     <Link to={`/blog/${relatedPost._id}`} onClick={ScrollToTop}>
-                      <h2 className="inline text-xl font-medium line-clamp-2 hover:underline hover:underline-offset-2 transition-all">
+                      <h2 className="inline text-xl font-medium line-clamp-2 hover:underline hover:underline-offset-2">
                         {relatedPost.title}
                       </h2>
                     </Link>

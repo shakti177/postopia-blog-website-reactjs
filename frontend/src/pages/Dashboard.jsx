@@ -125,7 +125,7 @@ const Dashboard = () => {
                   <div className="flex-1 flex flex-col md:flex-row justify-between gap-2 md:gap-10">
                     <div className="space-y-2">
                       <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
-                        <h2 className="md:text-xl font-semibold text-gray-900 dark:text-white line-clamp-2 leading-5">
+                        <h2 className="inline md:text-xl font-semibold text-gray-900 dark:text-white line-clamp-2 leading-5 hover:underline hover:underline-offset-2">
                           {post.title}
                         </h2>
                       </Link>

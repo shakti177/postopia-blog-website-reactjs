@@ -159,11 +159,11 @@ const Profile = () => {
                       </p>
                     </div>
                     <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
-                      <h2 className="text-lg md:text-xl font-medium text-gray-900 dark:text-white mb-3 line-clamp-2">
+                      <h2 className="inline text-lg md:text-xl font-medium text-gray-900 dark:text-white line-clamp-2 hover:underline hover:underline-offset-2">
                         {post.title}
                       </h2>
                     </Link>
-                    <p className="text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
+                    <p className="text-sm mt-3 text-gray-500 dark:text-gray-300 line-clamp-2">
                       <div
                         dangerouslySetInnerHTML={{
                           __html: post.content || "No description available.",
