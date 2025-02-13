@@ -48,7 +48,7 @@ const Blog = () => {
 
   return (
     <div className="container mx-auto px-5 lg:px-32 py-10">
-      <div className="space-y-4">
+      <div className="space-y-12">
         <div className="w-full h-[200px] md:h-[400px] lg:h-[500px] bg-cover bg-center overflow-hidden">
           <img
             src={post?.thumbnail}
