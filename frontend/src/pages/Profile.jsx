@@ -177,7 +177,7 @@ const Profile = () => {
                   <div className="w-20 h-20 md:w-32 md:h-32 overflow-hidden rounded-lg">
                     <img
                       src={post.thumbnail}
-                      alt="post thumbnail"
+                      alt={post.title}
                       className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
