@@ -33,18 +33,24 @@ const EditBlog = () => {
 
   useEffect(() => {
     if (id) {
+      setTitle("");
+      setContent("");
+      setCategory("");
+      setImage(null);
+      setThumbnail(null);
+
       fetchPost(id);
     }
   }, [id]);
 
   useEffect(() => {
-    if (post) {
+    if (post && post._id === id) {
       setTitle(post.title || "");
       setContent(post.content || "");
       setCategory(post.category || "");
       setImage(post.thumbnail || null);
     }
-  }, [post]);
+  }, [post, id]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
