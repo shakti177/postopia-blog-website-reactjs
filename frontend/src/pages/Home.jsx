@@ -68,8 +68,12 @@ const Home = () => {
                           {post.author.name} • {formatDate(post?.createdAt)}
                         </p>
                       </div>
-                      <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
-                        <h2 className="inline text-lg md:text-xl font-medium text-gray-900 dark:text-white line-clamp-2 hover:underline hover:underline-offset-2">
+                      <Link
+                        to={`/blog/${post._id}`}
+                        onClick={ScrollToTop}
+                        className="line-clamp-2"
+                      >
+                        <h2 className="inline text-lg md:text-xl font-medium text-gray-900 dark:text-white hover:underline hover:underline-offset-2">
                           {post.title}
                         </h2>
                       </Link>
