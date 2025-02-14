@@ -96,7 +96,7 @@
 }
 
 .ql-editor a {
-  @apply text-blue-600 underline;
+  @apply text-blue-800 underline;
 }
 
 .ql-editor p {
@@ -105,7 +105,7 @@
 }
 
 .ql-editor blockquote {
-  border-left: 4px solid #3b82f6 !important;
+  border-left: 4px solid #1d41af !important;
   padding-left: 1rem !important;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
