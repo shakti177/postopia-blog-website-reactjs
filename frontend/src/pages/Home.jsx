@@ -84,7 +84,7 @@ const Home = () => {
                           }}
                         />
                       </p>
-                      <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
+                      <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
                         {post.category}
                       </span>
                     </div>
