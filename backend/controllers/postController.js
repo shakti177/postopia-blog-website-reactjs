@@ -2,7 +2,7 @@ const postModel = require("../models/post-model");
 const userModel = require("../models/user-model");
 
 module.exports.allPost = async (req, res) => {
-  const { postId } = req.query;
+  const { postId, page, limit } = req.query;
 
   try {
     if (postId) {
@@ -15,11 +15,32 @@ module.exports.allPost = async (req, res) => {
         return res.status(404).json({ error: "Post not found" });
       }
     } else {
-      const posts = await postModel
-        .find()
-        .populate("author", "name profilePicture")
-        .sort({ createdAt: -1 });
-      res.json(posts);
+      if (page && limit) {
+        const pageNumber = parseInt(page);
+        const limitNumber = parseInt(limit);
+
+        const totalPosts = await postModel.countDocuments();
+
+        const posts = await postModel
+          .find()
+          .populate("author", "name profilePicture")
+          .sort({ createdAt: -1 })
+          .skip((pageNumber - 1) * limitNumber)
+          .limit(limitNumber);
+
+        return res.json({
+          posts,
+          totalPages: Math.ceil(totalPosts / limitNumber),
+          currentPage: pageNumber,
+        });
+      } else {
+        const posts = await postModel
+          .find()
+          .populate("author", "name profilePicture")
+          .sort({ createdAt: -1 });
+
+        return res.json(posts);
+      }
     }
   } catch (error) {
     res.status(500).json({ error: "Error fetching posts" });
