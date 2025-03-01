@@ -90,11 +90,13 @@ const Home = () => {
                     </div>
 
                     <div className="w-full h-56 md:w-full md:h-32 lg:h-44 pb-4 md:pb-0">
-                      <img
-                        src={post.thumbnail}
-                        alt={post.title}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
+                      <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
+                        <img
+                          src={post.thumbnail}
+                          alt={post.title}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </Link>
                     </div>
                   </div>
                 ))}
