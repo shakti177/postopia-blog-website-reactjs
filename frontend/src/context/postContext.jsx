@@ -15,6 +15,7 @@ export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
+  const [categoryPosts, setCategoryPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -97,7 +98,7 @@ export const PostProvider = ({ children }) => {
     setError(null);
     try {
       const response = await apiFetchPostByCategory(category);
-      setPosts(response.data);
+      setCategoryPosts(response);
     } catch (error) {
       console.error(error);
     } finally {
@@ -124,6 +125,7 @@ export const PostProvider = ({ children }) => {
         posts,
         post,
         userPosts,
+        categoryPosts,
         loading,
         error,
         createPost,
