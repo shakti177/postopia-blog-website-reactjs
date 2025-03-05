@@ -101,7 +101,7 @@ const Home = () => {
                   </div>
                 ))}
           </div>
-          <div className="md:sticky top-28 h-full">
+          <div>
             <Sidebar />
           </div>
         </div>
