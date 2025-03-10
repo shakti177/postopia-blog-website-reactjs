@@ -71,7 +71,7 @@ const Navbar = () => {
             </div>
           )}
 
-          <div onClick={toggleTheme}>
+          <div onClick={toggleTheme} className="cursor-pointer">
             {theme === "dark" ? <Sun className="dark:text-white" /> : <Moon />}
           </div>
 
