@@ -14,9 +14,9 @@ export const apiCreatePost = async (formData, accessToken) => {
   }
 };
 
-export const apiFetchPosts = async () => {
+export const apiFetchPosts = async (page = 1, limit = 5) => {
   try {
-    const response = await API.get("/posts");
+    const response = await API.get(`/posts?page=${page}&limit=${limit}`);
     return response.data;
   } catch (error) {
     return error.response.data;

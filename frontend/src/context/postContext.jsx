@@ -33,12 +33,17 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (page = 1, limit = 5) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await apiFetchPosts();
-      setPosts(response);
+      const response = await apiFetchPosts(page, limit);
+      if (page === 1) {
+        setPosts(response.posts);
+      } else {
+        setPosts((prevPosts) => [...prevPosts, ...response.posts]);
+      }
+      return response; // Return the response to get totalPages and currentPage
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,17 +1,27 @@
+import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/SideBar/Sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { usePost } from "@/context/postContext";
 import { formatDate } from "@/utils/dataUtil";
 import { getNameInitials } from "@/utils/stringUtil";
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const { posts, fetchPosts, loading } = usePost();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    const loadPosts = async () => {
+      const response = await fetchPosts(page);
+      setTotalPages(response.totalPages);
+    };
+    loadPosts();
+  }, [page]);
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   const ScrollToTop = () => {
     window.scrollTo({
@@ -23,12 +33,12 @@ const Home = () => {
   return (
     <>
       <div className="container mx-auto px-5 md:px-10 py-7">
-        <div className="grid grid-cols-1 md:grid-cols-[66%_30%] justify-between">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[66%_30%] justify-between">
           <div>
             <h1 className="text-xl font-medium text-gray-900 dark:text-white mb-7 md:mb-5 border-b pb-4">
               Recent Blogs
             </h1>
-            {loading
+            {loading && page === 1
               ? Array(5)
                   .fill(0)
                   .map((_, index) => (
@@ -100,6 +110,18 @@ const Home = () => {
                     </div>
                   </div>
                 ))}
+            {page < totalPages && (
+              <button
+                onClick={handleLoadMore}
+                className="flex items-center justify-center w-full py-2 mt-4 text-sm text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-neutral-800 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-700"
+              >
+                {loading ? (
+                  <div className="size-6 rounded-full border-4 border-gray-300 border-r-blue-600 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
+                ) : (
+                  "Load More"
+                )}
+              </button>
+            )}
           </div>
           <div>
             <Sidebar />
