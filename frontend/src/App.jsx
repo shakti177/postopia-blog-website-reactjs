@@ -12,6 +12,7 @@ import Write from "./pages/Write";
 import Dashboard from "./pages/Dashboard";
 import EditBlog from "./pages/EditBlog";
 import Blog from "./pages/Blog";
+import Search from "./pages/Search";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/write" element={<Write />} />
           <Route path="/editblog/:id" element={<EditBlog />} />
           <Route path="/profile" element={<Profile />} />

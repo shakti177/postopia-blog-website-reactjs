@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { X, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
 
   const handleClear = () => {
     setSearchText("");
@@ -11,7 +13,7 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     if (searchText.trim()) {
-      console.log("Searching for:", searchText);
+      navigate(`/search?q=${encodeURIComponent(searchText)}`);
     }
   };
 
@@ -36,13 +38,13 @@ const SearchBar = () => {
         <div className="absolute inset-y-0 right-0 flex items-center gap-1 pr-3">
           {searchText && (
             <X
-              className="h-5 w-5 text-gray-400 hover:text-gray-600"
+              className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer"
               onClick={handleClear}
             />
           )}
 
           <Search
-            className="h-5 w-5 text-gray-400 hover:text-gray-600"
+            className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer"
             onClick={handleSearch}
           />
         </div>
