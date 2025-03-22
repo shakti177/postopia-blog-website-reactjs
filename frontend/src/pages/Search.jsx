@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { usePost } from "@/context/PostContext";
 import { Button } from "@/components/ui/button";
+import { usePost } from "@/context/postContext";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
