@@ -52,8 +52,11 @@ const Search = () => {
                   }}
                 />
               </p>
-              <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
-                <Button className="mt-4 px-4 py-2 bg-blue-800 hover:bg-blue-700 transition">
+              <Link to={`/blog/${post._id}`}>
+                <Button
+                  className="mt-4 px-4 py-2 bg-blue-800 hover:bg-blue-700 transition"
+                  onClick={ScrollToTop}
+                >
                   Read More
                 </Button>
               </Link>
@@ -61,7 +64,13 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <p className="text-gray-600">No posts found.</p>
+        <div className="text-center h-96 flex flex-col justify-center items-center gap-3">
+          <h2 className="text-3xl font-medium">Nothing To See Here</h2>
+          <p className="text-xl">No Post Found!</p>
+          <Button className="px-4 py-2 bg-blue-800 hover:bg-blue-700 transition">
+            <Link to="/">Home</Link>
+          </Button>
+        </div>
       )}
     </div>
   );
