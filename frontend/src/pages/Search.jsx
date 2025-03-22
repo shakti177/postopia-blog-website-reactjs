@@ -61,7 +61,7 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <p className="text-gray-500">No posts found.</p>
+        <p className="text-gray-600">No posts found.</p>
       )}
     </div>
   );
