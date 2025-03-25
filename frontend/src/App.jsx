@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import EditBlog from "./pages/EditBlog";
 import Blog from "./pages/Blog";
 import Search from "./pages/Search";
+import Category from "./pages/Category";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/blog/:id" element={<Blog />} />
+          <Route path="/category/:category" element={<Category />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footerbar />

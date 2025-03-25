@@ -95,18 +95,25 @@ const Blog = () => {
       </div>
 
       {/* Share Section */}
-      <div className="flex justify-end gap-2 mt-4 border-b pb-4">
-        <p>Share On</p>
-        <a
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-            post?.title
-          )}&url=${encodeURIComponent(window.location.href)}`}
-          target="_blank"
-          rel="noreferrer"
-          className="text-neutral-900 dark:text-white"
-        >
-          <Twitter size={24} className="fill-current" strokeWidth={0} />
-        </a>
+      <div className="flex justify-between gap-2 mt-4 border-b pb-4">
+        <Link to={`/category/${post?.category}`}>
+          <p className="bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-">
+            {post?.category}
+          </p>
+        </Link>
+        <div className="flex items-center gap-2">
+          <p>Share On</p>
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+              post?.title
+            )}&url=${encodeURIComponent(window.location.href)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-neutral-900 dark:text-white"
+          >
+            <Twitter size={24} className="fill-current" strokeWidth={0} />
+          </a>
+        </div>
       </div>
 
       {/* Similar Blogs Section */}

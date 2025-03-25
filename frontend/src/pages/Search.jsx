@@ -37,14 +37,18 @@ const Search = () => {
               key={post._id}
               className="flex flex-col justify-between dark:bg-neutral-900 shadow-md rounded-lg p-4 border hover:shadow-lg transition"
             >
-              <img
-                src={post.thumbnail}
-                alt={post.title}
-                className="w-full h-52 object-cover rounded-lg mb-2"
-              />
-              <h2 className="text-xl font-semibold mb-2 line-clamp-3">
-                {post.title}
-              </h2>
+              <Link to={`/blog/${post._id}`}>
+                <img
+                  src={post.thumbnail}
+                  alt={post.title}
+                  className="w-full h-52 object-cover rounded-lg mb-2"
+                />
+              </Link>
+              <Link to={`/blog/${post._id}`}>
+                <h2 className="text-xl font-semibold mb-2 line-clamp-2 hover:underline hover:underline-offset-2">
+                  {post.title}
+                </h2>
+              </Link>
               <p className="text-gray-500 dark:text-gray-300 line-clamp-3">
                 <div
                   dangerouslySetInnerHTML={{
