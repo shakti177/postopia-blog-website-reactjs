@@ -58,14 +58,21 @@ const Search = () => {
                   }}
                 />
               </p>
-              <Link to={`/blog/${post._id}`}>
-                <Button
-                  className="mt-4 px-4 py-2 bg-blue-800 hover:bg-blue-700 transition"
-                  onClick={ScrollToTop}
-                >
-                  Read More
-                </Button>
-              </Link>
+              <div className="flex justify-between items-center">
+                <Link to={`/blog/${post._id}`}>
+                  <Button
+                    className="mt-4 px-4 py-2 bg-blue-800 hover:bg-blue-700 transition"
+                    onClick={ScrollToTop}
+                  >
+                    Read More
+                  </Button>
+                </Link>
+                <Link to={`/category/${post?.category}`}>
+                  <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
+                    {post.category}
+                  </span>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
