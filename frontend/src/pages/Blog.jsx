@@ -155,9 +155,11 @@ const Blog = () => {
                     className="line-clamp-3"
                   />
                   <div>
-                    <span className="inline-block bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-sm text-neutral-500 dark:text-neutral-400 rounded-2xl">
-                      {relatedPost.category}
-                    </span>
+                    <Link to={`/category/${relatedPost?.category}`}>
+                      <span className="inline-block bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-sm text-neutral-500 dark:text-neutral-400 rounded-2xl">
+                        {relatedPost.category}
+                      </span>
+                    </Link>
                   </div>
                 </div>
                 <div className="w-20 h-20 md:w-32 md:h-32 overflow-hidden rounded-lg">

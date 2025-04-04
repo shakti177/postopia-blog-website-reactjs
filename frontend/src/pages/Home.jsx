@@ -94,9 +94,11 @@ const Home = () => {
                           }}
                         />
                       </p>
-                      <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
-                        {post.category}
-                      </span>
+                      <Link to={`/category/${post?.category}`}>
+                        <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
+                          {post.category}
+                        </span>
+                      </Link>
                     </div>
 
                     <div className="w-full h-56 md:w-full md:h-32 lg:h-44 pb-4 md:pb-0">
