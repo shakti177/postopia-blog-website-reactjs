@@ -59,11 +59,9 @@ const Category = () => {
                     Read More
                   </Button>
                 </Link>
-                <Link to={`/category/${post?.category}`}>
-                  <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
-                    {post.category}
-                  </span>
-                </Link>
+                <span className="inline-block bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
+                  {post.category}
+                </span>
               </div>
             </div>
           ))}
