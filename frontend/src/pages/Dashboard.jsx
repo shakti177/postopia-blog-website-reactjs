@@ -136,9 +136,11 @@ const Dashboard = () => {
                           }}
                         />
                       </p>
-                      <span className="inline-block bg-white dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
-                        {post.category}
-                      </span>
+                      <Link to={`/category/${post?.category}`}>
+                        <span className="inline-block bg-white dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
+                          {post.category}
+                        </span>
+                      </Link>
                     </div>
                     <div className="flex items-center gap-2 md:gap-6">
                       <Link to={`/editblog/${post._id}`}>
