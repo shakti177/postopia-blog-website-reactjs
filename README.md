@@ -196,12 +196,6 @@ We welcome contributions! Follow these steps to get started:
 
 ---
 
-## 📜 **License**
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👩‍💻 **Authors**
 
 - [Kritik Hedau](https://github.com/kritikhedau)
