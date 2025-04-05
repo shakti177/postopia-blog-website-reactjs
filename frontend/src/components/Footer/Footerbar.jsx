@@ -2,11 +2,19 @@ import React from "react";
 import { useTheme } from "../../context/ThemeProvider";
 import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
+import { Link } from "react-router-dom";
 
 const Footerbar = () => {
   const { theme } = useTheme();
 
   const getCurrentYear = () => new Date().getFullYear();
+
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -53,24 +61,24 @@ const Footerbar = () => {
           </div>
           <div>
             <h2 className="text-xl font-bold">Categories</h2>
-            <ul className="py-2">
+            <ul className="py-2" onClick={ScrollToTop}>
               <li className="py-1">
-                <a href="#">Fashion</a>
+                <Link to={`/category/Fashion`}>Fashion</Link>
               </li>
               <li className="py-1">
-                <a href="#">Lifestyle</a>
+                <Link to={`/category/Technology`}>Technology</Link>
               </li>
               <li className="py-1">
-                <a href="#">Travel</a>
+                <Link to={`/category/Food`}>Food</Link>
               </li>
               <li className="py-1">
-                <a href="#">Technology</a>
+                <Link to={`/category/AI`}>AI</Link>
               </li>
               <li className="py-1">
-                <a href="#">Food</a>
+                <Link to={`/category/Travel`}>Travel</Link>
               </li>
               <li className="py-1">
-                <a href="#">AI</a>
+                <Link to={`/category/Coding`}>Coding</Link>
               </li>
             </ul>
           </div>
