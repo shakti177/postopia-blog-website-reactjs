@@ -3,9 +3,11 @@ import { useTheme } from "../../context/ThemeProvider";
 import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
 import { Link } from "react-router-dom";
+import { usePost } from "@/context/postContext";
 
 const Footerbar = () => {
   const { theme } = useTheme();
+  const { posts } = usePost();
 
   const getCurrentYear = () => new Date().getFullYear();
 
@@ -16,9 +18,11 @@ const Footerbar = () => {
     });
   };
 
+  const recentPosts = posts.slice(0, 3);
+
   return (
     <>
-      <div className="pt-7 bg-gray-100  dark:bg-neutral-900">
+      <div className="pt-7 bg-gray-100 dark:bg-neutral-900">
         <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-4 md:gap-8 md:px-[60px] lg:px-[120px]">
           <div className="col-span-1">
             <div className="flex items-center justify-center w-44 md:w-35 lg:w-52">
@@ -30,35 +34,27 @@ const Footerbar = () => {
               reader journey.
             </p>
           </div>
+
           <div>
             <h2 className="text-xl font-bold">Recent Posts</h2>
             <ul className="py-2">
-              <li className="py-1">
-                <a href="#">
-                  <p>3 New Outfit Formulas To Add To Your Capsule Wardrobe</p>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    February 27, 2021
-                  </span>
-                </a>
-              </li>
-              <li className="py-1">
-                <a href="#">
-                  <p>Blog Guide: How to Start a Personal Blog on WordPress</p>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    February 27, 2021
-                  </span>
-                </a>
-              </li>
-              <li className="py-1">
-                <a href="#">
-                  <p>The technical setup when starting a personal blog</p>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    February 27, 2021
-                  </span>
-                </a>
-              </li>
+              {recentPosts.map((item) => (
+                <li className="py-1" key={item._id} onClick={ScrollToTop}>
+                  <Link to={`/blog/${item._id}`}>
+                    <p className="line-clamp-2">{item.title}</p>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {new Date(item.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
           <div>
             <h2 className="text-xl font-bold">Categories</h2>
             <ul className="py-2" onClick={ScrollToTop}>
@@ -82,10 +78,12 @@ const Footerbar = () => {
               </li>
             </ul>
           </div>
+
           <div className="text-xl font-bold">
             <h2>Download Official App</h2>
           </div>
         </div>
+
         <div className="py-4">
           <p className="text-sm text-gray-500 text-center dark:text-gray-400">
             © {getCurrentYear()} Postopia. All Rights Reserved | Designed and
