@@ -43,7 +43,7 @@ export const PostProvider = ({ children }) => {
       } else {
         setPosts((prevPosts) => [...prevPosts, ...response.posts]);
       }
-      return response; // Return the response to get totalPages and currentPage
+      return response;
     } catch (error) {
       console.error(error);
     } finally {
