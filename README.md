@@ -1,6 +1,6 @@
 # 🌟 **Postopia** - *Where Your Ideas Take Flight* ✨
 
-Welcome to **Postopia**, a full-stack blogging platform designed to empower creators. Whether you're a writer, a tech enthusiast, or a foodie, Postopia is your go-to platform to share your ideas with the world. 🚀
+Postopia is a full-stack blogging platform built with React, Node.js, and MongoDB. It features user authentication, post creation & editing, dark/light mode toggle, and dynamic related post suggestions. Ideal for personal blogging, portfolio integration, and learning full-stack development. 🚀
 
 ---
 
