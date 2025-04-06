@@ -198,8 +198,8 @@ We welcome contributions! Follow these steps to get started:
 
 ## 👩‍💻 **Authors**
 
-- [Kritik Hedau](https://github.com/kritikhedau)
-- [Shakti Tamrakar](https://github.com/shakti177)
+- [Kritik Hedau](https://github.com/kritikhedau) [App Development]
+- [Shakti Tamrakar](https://github.com/shakti177) [Web Development]
 
 ---
 
