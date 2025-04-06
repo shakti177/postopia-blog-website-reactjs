@@ -64,30 +64,6 @@ const Dashboard = () => {
         <h1 className="text-xl text-gray-900 dark:text-white mb-7 md:mb-5 border-b pb-4">
           Manage Blogs
         </h1>
-        <div className="relative w-full">
-          <div className="relative">
-            <Input
-              type="text"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyPress={handleKeyPress}
-              className="outline-none pr-14 rounded-3xl p-6 bg-gray-100 dark:bg-neutral-900 dark:text-white"
-              placeholder="Search..."
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center gap-1 pr-3">
-              {searchText && (
-                <X
-                  className="h-5 w-5 text-gray-400 hover:text-gray-600"
-                  onClick={handleClear}
-                />
-              )}
-              <Search
-                className="h-5 w-5 text-gray-400 hover:text-gray-600"
-                onClick={handleSearch}
-              />
-            </div>
-          </div>
-        </div>
         <div className="mt-10">
           {loading ? (
             Array(3)
