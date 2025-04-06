@@ -25,7 +25,7 @@ Postopia is a full-stack blogging platform built with React, Node.js, and MongoD
 - 🔑 **Authentication**: JWT-based authentication for secure access.
 - 📂 **File Uploads**: Upload and manage images effortlessly.
 
-### 📱 **Mobile App**
+### 📱 **Mobile App [Under Development]**
 - 📲 **React Native**: Access Postopia on the go.
 - 🌟 **Expo**: Simplified development and deployment for iOS and Android.
 
