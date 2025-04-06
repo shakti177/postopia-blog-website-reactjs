@@ -1,5 +1,10 @@
 # 🌟 **Postopia** - *Where Your Ideas Take Flight* ✨
 
+![postopia](https://socialify.git.ci/shakti177/postopia/image?font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Auto)
+
+## 📌 Live Demo
+https://postopia.vercel.app/
+
 Postopia is a full-stack blogging platform built with React, Node.js, and MongoDB. It features user authentication, post creation & editing, dark/light mode toggle, and dynamic related post suggestions. Ideal for personal blogging, portfolio integration, and learning full-stack development. 🚀
 
 ---
