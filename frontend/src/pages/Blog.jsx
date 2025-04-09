@@ -96,7 +96,7 @@ const Blog = () => {
 
       {/* Share Section */}
       <div className="flex justify-between gap-2 mt-4 border-b pb-4">
-        <Link to={`/category/${post?.category}`}>
+        <Link to={`/category/${post?.category}`} onClick={ScrollToTop}>
           <p className="bg-gray-100 dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl">
             {post?.category}
           </p>
