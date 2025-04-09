@@ -155,7 +155,10 @@ const Blog = () => {
                     className="line-clamp-3"
                   />
                   <div>
-                    <Link to={`/category/${relatedPost?.category}`}>
+                    <Link
+                      to={`/category/${relatedPost?.category}`}
+                      onClick={ScrollToTop}
+                    >
                       <span className="inline-block bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-sm text-neutral-500 dark:text-neutral-400 rounded-2xl">
                         {relatedPost.category}
                       </span>
