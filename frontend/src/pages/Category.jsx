@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 const Category = () => {
   const { category } = useParams();
 
-  const { categoryPosts, fetchByCategory } = usePost();
+  const { categoryPosts, fetchByCategory, loading } = usePost();
 
   useEffect(() => {
     if (category) {
@@ -23,8 +23,12 @@ const Category = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 mt-3">Category:{category}</h1>
-      {categoryPosts.length > 0 ? (
+      <h1 className="text-2xl font-bold mb-4 mt-3">Category: {category}</h1>
+      {loading ? (
+        <div className="flex justify-center items-center h-[80vh]">
+          <div className="size-16 rounded-full border-[10px] border-gray-300 border-r-blue-800 dark:border-neutral-200 dark:border-r-neutral-700 animate-spin"></div>
+        </div>
+      ) : categoryPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {categoryPosts.map((post) => (
             <div
@@ -44,7 +48,7 @@ const Category = () => {
                 </h2>
               </Link>
               <p className="text-gray-500 dark:text-gray-300 line-clamp-3">
-                <div
+                <span
                   dangerouslySetInnerHTML={{
                     __html: post?.content || "No description available.",
                   }}
