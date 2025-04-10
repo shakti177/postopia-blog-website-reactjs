@@ -53,7 +53,7 @@ const Blog = () => {
           <img
             src={post?.thumbnail}
             alt={post?.title}
-            className="object-cover w-full h-full"
+            className="object-cover object-top w-full h-full"
           />
         </div>
         <div className="space-y-4 border-b pb-4">
