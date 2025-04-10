@@ -135,6 +135,7 @@ const Write = () => {
                           <SelectItem value="Fashion">Fashion</SelectItem>
                           <SelectItem value="Food">Food</SelectItem>
                           <SelectItem value="Technology">Technology</SelectItem>
+                          <SelectItem value="Travel">Travel</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
