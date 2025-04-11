@@ -115,7 +115,7 @@ const Home = () => {
             {page < totalPages && (
               <button
                 onClick={handleLoadMore}
-                className="flex items-center justify-center w-full py-2 mt-4 text-sm text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-neutral-800 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-700"
+                className="flex items-center justify-center w-full py-3 mt-4 text-sm text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-neutral-800 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-700"
               >
                 {loading ? (
                   <div className="size-6 rounded-full border-4 border-gray-300 border-r-blue-600 dark:border-neutral-200 dark:border-r-black animate-spin"></div>
