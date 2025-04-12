@@ -10,6 +10,13 @@ import {
 } from "lucide-react";
 
 const Sidebar = () => {
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const categories = [
     {
       id: 1,
@@ -49,7 +56,7 @@ const Sidebar = () => {
         <h2 className="text-2xl font-bold mb-8">Stories from all interests</h2>
         {categories.map((data) => (
           <div key={data.id}>
-            <Link to={`/category/${data.name}`}>
+            <Link to={`/category/${data.name}`} onClick={ScrollToTop}>
               <h3 className="text-lg font-semibold bg-gray-100 dark:bg-neutral-900 rounded-xl px-4 py-4 mb-3 shadow-sm">
                 {data.name}
                 <span className="float-right">{data.icon}</span>
