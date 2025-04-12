@@ -45,7 +45,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div>
+      <div className="md:sticky top-28">
         <h2 className="text-2xl font-bold mb-8">Stories from all interests</h2>
         {categories.map((data) => (
           <div key={data.id}>
