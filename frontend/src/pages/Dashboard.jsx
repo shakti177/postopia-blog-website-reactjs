@@ -112,7 +112,10 @@ const Dashboard = () => {
                           }}
                         />
                       </p>
-                      <Link to={`/category/${post?.category}`}>
+                      <Link
+                        to={`/category/${post?.category}`}
+                        onClick={ScrollToTop}
+                      >
                         <span className="inline-block bg-white dark:bg-neutral-800 px-3 py-1 text-sm text-gray-500 dark:text-gray-300 rounded-2xl mt-4">
                           {post.category}
                         </span>
