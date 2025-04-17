@@ -35,14 +35,14 @@ const Category = () => {
               key={post._id}
               className="flex flex-col justify-between dark:bg-neutral-900 shadow-md rounded-lg p-4 border hover:shadow-lg transition"
             >
-              <Link to={`/blog/${post._id}`}>
+              <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
                 <img
                   src={post.thumbnail}
                   alt={post.title}
                   className="w-full h-52 object-cover rounded-lg mb-2"
                 />
               </Link>
-              <Link to={`/blog/${post._id}`}>
+              <Link to={`/blog/${post._id}`} onClick={ScrollToTop}>
                 <h2 className="text-xl font-semibold mb-2 line-clamp-2 hover:underline hover:underline-offset-2">
                   {post.title}
                 </h2>
