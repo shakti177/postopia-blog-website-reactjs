@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { usePost } from "@/context/postContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getNameInitials } from "@/utils/stringUtil";
+import { formatDate } from "@/utils/dataUtil";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
@@ -46,6 +49,27 @@ const Search = () => {
                   className="w-full h-52 object-cover rounded-lg mb-2"
                 />
               </Link>
+              <div className="flex items-center gap-3 mb-4">
+                <div>
+                  <Avatar className="size-10">
+                    <AvatarImage
+                      src={post.author.profilePicture}
+                      className="object-cover w-full h-full"
+                    />
+                    <AvatarFallback>
+                      {getNameInitials(post.author.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+                <div className="flex flex-col mt-2">
+                  <p className="text-black font-bold dark:text-gray-300">
+                    {post.author.name}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-300">
+                    {formatDate(post?.createdAt)}
+                  </p>
+                </div>
+              </div>
               <Link to={`/blog/${post._id}`}>
                 <h2 className="text-xl font-semibold mb-2 line-clamp-2 hover:underline hover:underline-offset-2">
                   {post.title}
