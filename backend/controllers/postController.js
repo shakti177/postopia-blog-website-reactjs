@@ -207,7 +207,10 @@ module.exports.postByCategory = async (req, res) => {
       });
     }
 
-    const posts = await postModel.find({ category }).sort({ createdAt: -1 });
+    const posts = await postModel
+      .find({ category })
+      .populate("author", "name profilePicture")
+      .sort({ createdAt: -1 });
 
     res.json(posts);
   } catch (error) {
