@@ -135,6 +135,7 @@ const Blog = () => {
                       </AvatarFallback>
                     </Avatar>
                     <p className="text-sm">{relatedPost.author.name}</p>
+                    <p>•</p>
                     <span className="text-sm">
                       {formatDate(relatedPost.createdAt)}
                     </span>
