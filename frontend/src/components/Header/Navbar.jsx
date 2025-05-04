@@ -1,7 +1,7 @@
 import React from "react";
 import logoDark from "../../assets/logo/blacklogo.png";
 import logoLight from "../../assets/logo/whitelogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import {
   DropdownMenu,
@@ -22,8 +22,6 @@ import { Skeleton } from "../ui/skeleton";
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const { user, loading, logout } = useAuth();
-
-  const navigate = useNavigate();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
