@@ -121,25 +121,25 @@ const Blog = () => {
         <p className="text-2xl font-medium mb-6 border-b pb-4">Similar Blogs</p>
         <div className="flex flex-col gap-4 mt-4">
           {randomPosts.map((relatedPost) => (
-            <div key={relatedPost._id}>
+            <div key={relatedPost._id} className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <Avatar className="size-6">
+                  <AvatarImage
+                    src={relatedPost.author.profilePicture}
+                    className="object-cover w-full h-full"
+                  />
+                  <AvatarFallback>
+                    {getNameInitials(relatedPost.author.name)}
+                  </AvatarFallback>
+                </Avatar>
+                <p className="text-sm">{relatedPost.author.name}</p>
+                <p>•</p>
+                <span className="text-sm">
+                  {formatDate(relatedPost.createdAt)}
+                </span>
+              </div>
               <div className="flex items-center justify-between gap-4 border-b pb-4">
                 <div className="basis-[80%] flex flex-col gap-3">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="size-6">
-                      <AvatarImage
-                        src={relatedPost.author.profilePicture}
-                        className="object-cover w-full h-full"
-                      />
-                      <AvatarFallback>
-                        {getNameInitials(relatedPost.author.name)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <p className="text-sm">{relatedPost.author.name}</p>
-                    <p>•</p>
-                    <span className="text-sm">
-                      {formatDate(relatedPost.createdAt)}
-                    </span>
-                  </div>
                   <div className="inline">
                     <Link to={`/blog/${relatedPost._id}`} onClick={ScrollToTop}>
                       <h2 className="inline text-xl font-medium line-clamp-2 hover:underline hover:underline-offset-2">
