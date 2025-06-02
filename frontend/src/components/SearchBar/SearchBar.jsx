@@ -11,15 +11,24 @@ const SearchBar = () => {
     setSearchText("");
   };
 
+  const ScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleSearch = () => {
     if (searchText.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchText)}`);
     }
+    ScrollToTop();
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearch();
+      ScrollToTop();
     }
   };
 
