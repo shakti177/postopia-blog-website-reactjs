@@ -9,7 +9,7 @@ import { useParams, Link } from "react-router-dom";
 
 const Blog = () => {
   const { id } = useParams();
-  const { posts, post, fetchPost, fetchPosts, loading } = usePost();
+  const { posts, post, fetchPost, fetchPosts, loading, error } = usePost();
 
   useEffect(() => {
     if (id) {
@@ -27,6 +27,13 @@ const Blog = () => {
     return (
       <div className="flex justify-center items-center h-[80vh]">
         <div className="size-16 rounded-full border-[10px] border-gray-300 border-r-blue-800 dark:border-neutral-200 dark:border-r-neutral-700 animate-spin"></div>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <p className="text-red-500 text-lg">Error: {error}</p>
       </div>
     );
 
