@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const EditBlog = () => {
   const { post, fetchPost, updatePost, loading } = usePost();
@@ -95,6 +95,10 @@ const EditBlog = () => {
         <div className="size-14 rounded-full border-8 border-gray-300 border-r-blue-800 dark:border-neutral-200 dark:border-r-neutral-800 animate-spin"></div>
       </div>
     );
+  }
+
+  if (!post || post._id !== id) {
+    return <Navigate to="*" />;
   }
 
   return (
