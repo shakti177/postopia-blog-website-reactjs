@@ -5,11 +5,11 @@ import { getNameInitials } from "@/utils/stringUtil";
 import { getFormattedTime } from "@/utils/timeUtil";
 import { Clock9, Twitter } from "lucide-react";
 import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 
 const Blog = () => {
   const { id } = useParams();
-  const { posts, post, fetchPost, fetchPosts, loading, error } = usePost();
+  const { posts, post, fetchPost, fetchPosts, loading } = usePost();
 
   useEffect(() => {
     if (id) {
@@ -30,12 +30,7 @@ const Blog = () => {
       </div>
     );
 
-  if (error)
-    return (
-      <div className="flex justify-center items-center h-[80vh]">
-        <p className="text-red-500 text-lg">Error: {error}</p>
-      </div>
-    );
+  if ((!loading && !post) || !post.author) return <Navigate to="*" />;
 
   const getRandomPosts = () => {
     if (!posts || posts.length === 0) return [];

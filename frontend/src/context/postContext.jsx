@@ -60,7 +60,8 @@ export const PostProvider = ({ children }) => {
       const response = await apiFetchPost(postId);
       setPost(response);
     } catch (error) {
-      setError(error);
+      setError(error.message || "Failed to fetch post");
+      setPost(null);
     } finally {
       setLoading(false);
     }
