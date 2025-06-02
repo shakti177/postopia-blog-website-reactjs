@@ -14,6 +14,8 @@ import EditBlog from "./pages/EditBlog";
 import Blog from "./pages/Blog";
 import Search from "./pages/Search";
 import Category from "./pages/Category";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 const App = () => {
   return (
@@ -22,13 +24,67 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+
+          {/* public Routes */}
+
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
+
+          {/* public Routes */}
+
           <Route path="/search" element={<Search />} />
-          <Route path="/write" element={<Write />} />
-          <Route path="/editblog/:id" element={<EditBlog />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* private Routes */}
+
+          <Route
+            path="/write"
+            element={
+              <PrivateRoute>
+                <Write />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/editblog/:id"
+            element={
+              <PrivateRoute>
+                <EditBlog />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+
+          {/* private Routes */}
+
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="*" element={<NotFound />} />

@@ -1,8 +1,8 @@
 import React from "react";
+import { useAuth } from "@/context/AuthContext";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 
-const PrivateRoute = ({ children }) => {
+const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading)
@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
       </div>
     );
 
-  return user ? children : <Navigate to="/login" replace />;
+  return user ? <Navigate to="/" replace /> : children;
 };
 
-export default PrivateRoute;
+export default PublicRoute;
