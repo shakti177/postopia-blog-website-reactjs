@@ -6,13 +6,15 @@ module.exports.allPost = async (req, res) => {
 
   try {
     if (postId) {
-      const post = await postModel
-        .findById(postId)
-        .populate("author", "name profilePicture");
-      if (post) {
-        return res.json(post);
-      } else {
-        return res.status(404).json({ error: "Post not found" });
+      try {
+        const post = await postModel
+          .findById(postId)
+          .populate("author", "name profilePicture");
+        if (post) {
+          return res.json(post);
+        }
+      } catch (err) {
+        return res.status(400).json({ error: "Post Not Found" });
       }
     } else {
       if (page && limit) {
