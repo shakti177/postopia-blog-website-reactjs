@@ -6,7 +6,7 @@ import { getNameInitials } from "@/utils/stringUtil";
 import { getFormattedTime } from "@/utils/timeUtil";
 import { Clock9, Twitter } from "lucide-react";
 import React, { useEffect } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const Blog = () => {
   const { id } = useParams();
