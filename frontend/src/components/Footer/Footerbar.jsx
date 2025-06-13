@@ -26,7 +26,11 @@ const Footerbar = () => {
         <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-4 md:gap-8 md:px-[60px] lg:px-[120px]">
           <div className="col-span-1">
             <div className="flex items-center justify-center w-44 md:w-32 lg:w-52">
-              <img src={theme === "light" ? logoDark : logoLight} alt="Logo" />
+              <img
+                src={theme === "light" ? logoDark : logoLight}
+                alt="Logo"
+                onClick={ScrollToTop}
+              />
             </div>
             <p className="py-6">
               Postopia - Where Your Ideas Take Flight, transforming creativity
