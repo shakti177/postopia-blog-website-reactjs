@@ -61,7 +61,7 @@ const Profile = () => {
   }, [user?.id, user?.name, user?.profilePicture]);
 
   const hasChanges = () => {
-    return name !== user?.name || oldPassword || newPassword || selectedFile;
+    return name !== user?.name || newPassword || selectedFile;
   };
 
   const handleSubmit = async (e) => {
