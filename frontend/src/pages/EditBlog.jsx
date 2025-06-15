@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const EditBlog = () => {
   const { post, fetchPost, updatePost, loading } = usePost();
